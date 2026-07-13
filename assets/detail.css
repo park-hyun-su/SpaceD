@@ -613,6 +613,36 @@ body.detail-page .page-next h2 { max-width: 18ch; margin-inline: 0; }
 body.detail-page .page-next p { margin-inline: 0; }
 body.detail-page .page-next .actions { justify-content: flex-start; }
 
+/* Large centered menu label, scoped to the five requested detail pages. */
+body.menu-title-centered .hero-grid {
+  padding-top: clamp(112px, 11vw, 154px);
+}
+body.menu-title-centered .hero .eyebrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  display: block;
+  color: #eaeff6;
+  font-size: clamp(52px, 6.9vw, 102px);
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -.045em;
+  text-align: center;
+  text-transform: none;
+}
+body.menu-title-centered .hero .eyebrow::before { display: none; }
+
+@media (max-width: 980px) {
+  body.menu-title-centered .hero-grid { padding-top: clamp(96px, 16vw, 132px); }
+  body.menu-title-centered .hero .eyebrow { font-size: clamp(46px, 9vw, 76px); }
+}
+@media (max-width: 560px) {
+  body.menu-title-centered .hero-grid { padding-top: 80px; }
+  body.menu-title-centered .hero .eyebrow { font-size: clamp(38px, 12vw, 54px); }
+}
+
 /* Editorial orbital system: spacious like Starcloud, direct like Cowboy Space. */
 body.detail-page {
   background:

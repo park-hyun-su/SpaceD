@@ -466,10 +466,10 @@
 
     .video-card {
       overflow: hidden;
-      border: 1px solid var(--line);
+      border: 0;
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.035);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      background: transparent;
+      box-shadow: none;
     }
     .video-card video {
       display: block;
@@ -498,11 +498,15 @@
 
     .member-grid {
       display: grid;
-      grid-template-columns: minmax(280px, 390px);
+      grid-template-columns: 1fr;
       gap: 16px;
     }
     .member-card {
-      padding: 18px;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: start;
     }
     .member-photo {
       width: 100%;
@@ -548,10 +552,38 @@
     .member-bio {
       margin-top: 14px;
       color: var(--muted);
-      font-size: 13.5px;
-      line-height: 1.65;
+      font-size: 15px;
+      line-height: 1.7;
       word-break: keep-all;
     }
+    .member-details { padding: 8px 8px 8px 0; }
+    .member-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .member-fact {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .025);
+    }
+    .member-fact h3 {
+      margin-bottom: 12px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .member-fact ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--soft);
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    .member-fact li + li { margin-top: 7px; }
 
     /* footer */
     footer {
@@ -586,7 +618,7 @@
       .hero-grid { grid-template-columns: 1fr; gap: 34px; }
       .section-head { grid-template-columns: 1fr; gap: 18px; align-items: start; }
       .grid, .grid.three, .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .member-grid { grid-template-columns: minmax(280px, 390px); }
+      .member-card { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); }
       .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .orbit-map, .split { grid-template-columns: 1fr; }
     }
@@ -603,6 +635,9 @@
       .actions .btn { justify-content: center; text-align: center; }
       .grid, .grid.three, .grid.two { grid-template-columns: 1fr; }
       .member-grid { grid-template-columns: 1fr; }
+      .member-card { grid-template-columns: 1fr; padding: 16px; }
+      .member-details { padding: 0 2px 4px; }
+      .member-facts { grid-template-columns: 1fr; }
       .strip { grid-template-columns: 1fr; }
       .footer-inner address { text-align: left; }
       .architecture { min-height: 0; padding: 18px; }
@@ -664,16 +699,6 @@
 
           <aside class="video-card" aria-label="SpaceD introduction video">
             <video src="spaced-intro-en.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
-            <div class="video-caption">
-              <strong>
-                <span data-lang="en">SpaceD introduction</span>
-                <span data-lang="ko">SpaceD 소개 영상</span>
-              </strong>
-              <p>
-                <span data-lang="en">The opening video starts automatically. Use the video controls to turn sound on.</span>
-                <span data-lang="ko">첫 화면에서 영상이 자동 재생됩니다. 소리는 영상 컨트롤에서 켤 수 있습니다.</span>
-              </p>
-            </div>
           </aside>
         </div>
 
@@ -957,16 +982,48 @@
             <div class="member-photo">
               <img src="/member-seungjo-kim.jpg" alt="김승조 SpaceD 창업자 겸 CEO">
             </div>
-            <div class="member-name">
-              <span data-lang="en">Seung Jo Kim</span>
-              <span data-lang="ko">김승조</span>
+            <div class="member-details">
+              <div class="member-name">
+                <span data-lang="en">Seung Jo Kim</span>
+                <span data-lang="ko">김승조</span>
+              </div>
+              <div class="member-title">
+                <span data-lang="en">Founder &amp; CEO · Professor Emeritus, Seoul National University</span>
+                <span data-lang="ko">창업자·CEO · 서울대학교 명예교수</span>
+              </div>
+              <p class="member-bio" data-lang="en">A South Korean aerospace engineer whose work spans structural analysis, satellite systems and national space programs. He served as president of the Korea Aerospace Research Institute and founded SpaceD in November 2024.</p>
+              <p class="member-bio" data-lang="ko">구조해석, 위성 시스템과 국가 우주개발 사업을 이끌어 온 대한민국의 항공우주공학자입니다. 한국항공우주연구원 원장을 역임했으며 2024년 11월 SpaceD를 창업했습니다.</p>
+              <div class="member-facts">
+                <section class="member-fact">
+                  <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
+                  <ul data-lang="en">
+                    <li>B.S., Aerospace Engineering, Seoul National University, 1973</li>
+                    <li>M.S., The University of Texas at Austin, 1981</li>
+                    <li>Ph.D., The University of Texas at Austin, 1985</li>
+                  </ul>
+                  <ul data-lang="ko">
+                    <li>서울대학교 항공공학 학사, 1973</li>
+                    <li>미국 텍사스대학교 오스틴캠퍼스 석사, 1981</li>
+                    <li>미국 텍사스대학교 오스틴캠퍼스 박사, 1985</li>
+                  </ul>
+                </section>
+                <section class="member-fact">
+                  <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
+                  <ul data-lang="en">
+                    <li>Professor, Seoul National University, 1986–2011</li>
+                    <li>Former President, Korea Aerospace Research Institute</li>
+                    <li>Led Naro-1, KOMPSAT-3/5, STSat-3 and Smart UAV programs</li>
+                    <li>AIAA Fellow and Institute of Physics Fellow</li>
+                  </ul>
+                  <ul data-lang="ko">
+                    <li>서울대학교 항공우주공학과 교수, 1986–2011</li>
+                    <li>한국항공우주연구원 원장 역임</li>
+                    <li>나로호, 아리랑 3·5호, 과학기술위성 3호 및 스마트 무인기 사업 주도</li>
+                    <li>미국항공우주학회 및 영국물리학회 석학회원</li>
+                  </ul>
+                </section>
+              </div>
             </div>
-            <div class="member-title">
-              <span data-lang="en">Founder &amp; CEO · Professor Emeritus, Seoul National University</span>
-              <span data-lang="ko">창업자·CEO · 서울대학교 명예교수</span>
-            </div>
-            <p class="member-bio" data-lang="en">An aerospace engineer and former president of the Korea Aerospace Research Institute, he founded SpaceD in November 2024.</p>
-            <p class="member-bio" data-lang="ko">항공우주공학자이자 전 한국항공우주연구원 원장으로, 2024년 11월 SpaceD를 창업했습니다.</p>
           </article>
         </div>
       </div>
