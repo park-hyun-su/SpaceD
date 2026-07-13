@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>spaceD — Software-Defined Datacenter Satellites</title>
+  <title>spaceD ??Software-Defined Datacenter Satellites</title>
   <style>
     :root {
       color-scheme: dark;
@@ -440,6 +440,111 @@
     .cta-band p { margin: 22px auto 0; max-width: 62ch; color: var(--muted); font-size: 17px; word-break: keep-all; }
     .cta-band .actions { justify-content: center; }
 
+    /* page-like routing */
+    main > section {
+      display: none;
+    }
+    main > section.is-active {
+      display: block;
+      animation: pageIn .32s ease both;
+    }
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    nav a[aria-current="page"] {
+      color: var(--ink);
+    }
+    nav a[aria-current="page"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 6px;
+      border-radius: 999px;
+      background: linear-gradient(100deg, var(--cyan), var(--blue));
+    }
+
+    .video-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.035);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+    .video-card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #000;
+    }
+    .video-caption {
+      padding: 18px 20px 20px;
+      border-top: 1px solid var(--line);
+    }
+    .video-caption strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .video-caption p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .member-card {
+      padding: 18px;
+    }
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 70% 18%, rgba(95, 251, 224, 0.2), transparent 34%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+      display: grid;
+      place-items: center;
+    }
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .member-placeholder {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .member-name {
+      margin-top: 16px;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .member-title {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
     /* footer */
     footer {
       border-top: 1px solid rgba(246, 248, 252, 0.08);
@@ -473,11 +578,13 @@
       .hero-grid { grid-template-columns: 1fr; gap: 34px; }
       .section-head { grid-template-columns: 1fr; gap: 18px; align-items: start; }
       .grid, .grid.three, .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .orbit-map, .split { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .grid, .grid.three, .grid.two { grid-template-columns: 1fr; }
+      .member-grid { grid-template-columns: 1fr; }
       .strip { grid-template-columns: 1fr; }
       .footer-inner address { text-align: left; }
       .architecture { min-height: 0; padding: 18px; }
@@ -492,15 +599,16 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="spaceD home">
-        <img src="spaced-logo-white.png" alt="spaceD">
+      <a class="brand" href="#top" data-route="top" aria-label="spaceD home">
+        <img src="spaced-logo-cutout-white.png" alt="spaceD">
       </a>
       <nav aria-label="Primary">
-        <a href="#why" data-lang="en">Why Space</a><a href="#why" data-lang="ko">우주로</a>
-        <a href="#technology" data-lang="en">Technology</a><a href="#technology" data-lang="ko">기술</a>
+        <a href="#why" data-lang="en">Why Space</a><a href="#why" data-lang="ko">?곗＜濡?/a>
+        <a href="#technology" data-lang="en">Technology</a><a href="#technology" data-lang="ko">湲곗닠</a>
         <a href="#architecture" data-lang="en">SDDS</a><a href="#architecture" data-lang="ko">SDDS</a>
         <a href="#services" data-lang="en">XaaS</a><a href="#services" data-lang="ko">XaaS</a>
-        <a href="#applications" data-lang="en">Applications</a><a href="#applications" data-lang="ko">활용</a>
+        <a href="#applications" data-lang="en">Applications</a><a href="#applications" data-lang="ko">?쒖슜</a>
+        <a href="#members" data-lang="en">Member</a><a href="#members" data-lang="ko">Member</a>
         <a href="#team" data-lang="en">People</a><a href="#team" data-lang="ko">People</a>
       </nav>
       <div class="header-cta">
@@ -512,68 +620,70 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="app">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero is-active" id="top">
       <div class="wrap">
-        <img class="hero-logo-bg" src="spaced-logo-white.png" alt="" aria-hidden="true">
+        <img class="hero-logo-bg" src="spaced-logo-cutout-white.png" alt="" aria-hidden="true">
         <div class="hero-grid">
           <div>
             <div class="eyebrow">
               <span data-lang="en">Software-Defined Datacenter Satellites</span>
-              <span data-lang="ko">소프트웨어 정의 데이터센터 위성</span>
+              <span data-lang="ko">?뚰봽?몄썾???뺤쓽 ?곗씠?곗꽱???꾩꽦</span>
             </div>
             <h1>
               <span data-lang="en">Power. Compute. Connect. <span class="accent">In orbit.</span></span>
-              <span data-lang="ko">전력. 연산. 연결. <span class="accent">궤도 위에서.</span></span>
+              <span data-lang="ko">?꾨젰. ?곗궛. ?곌껐. <span class="accent">沅ㅻ룄 ?꾩뿉??</span></span>
             </h1>
             <p class="lead">
               <span data-lang="en">spaceD redefines satellites from single-purpose machines into orbital datacenters. On the SDDS architecture we combine SDR, AESA, Agentic AI, and secure computing to turn communications, sensing, navigation, and edge AI into software-defined services.</span>
-              <span data-lang="ko">spaceD는 위성을 단일 목적 장비가 아니라 궤도 위 데이터센터로 재정의합니다. SDDS 아키텍처 위에 SDR, AESA, Agentic AI, 보안 컴퓨팅을 결합해 통신·관측·항법·엣지 AI 서비스를 소프트웨어로 전환합니다.</span>
+              <span data-lang="ko">spaceD???꾩꽦???⑥씪 紐⑹쟻 ?λ퉬媛 ?꾨땲??沅ㅻ룄 ???곗씠?곗꽱?곕줈 ?ъ젙?섑빀?덈떎. SDDS ?꾪궎?띿쿂 ?꾩뿉 SDR, AESA, Agentic AI, 蹂댁븞 而댄벂?낆쓣 寃고빀???듭떊쨌愿痢≤룻빆踰빧룹뿣吏 AI ?쒕퉬?ㅻ? ?뚰봽?몄썾?대줈 ?꾪솚?⑸땲??</span>
             </p>
             <div class="actions">
               <a class="button primary" href="#architecture">
-                <span data-lang="en">Explore SDDS</span><span data-lang="ko">SDDS 살펴보기</span>
+                <span data-lang="en">Explore SDDS</span><span data-lang="ko">SDDS ?댄렣蹂닿린</span>
               </a>
               <a class="button" href="#services">
-                <span data-lang="en">View XaaS model</span><span data-lang="ko">XaaS 모델 보기</span>
+                <span data-lang="en">View XaaS model</span><span data-lang="ko">XaaS 紐⑤뜽 蹂닿린</span>
               </a>
             </div>
           </div>
 
-          <aside class="mission-card" aria-label="spaceD mission summary">
-            <img src="spaced-logo-white.png" alt="spaceD logo">
-            <strong>
-              <span data-lang="en">The satellite becomes a platform.</span>
-              <span data-lang="ko">위성이 플랫폼이 됩니다.</span>
-            </strong>
-            <p>
-              <span data-lang="en">One satellite runs SAR sensing, Direct-to-Cell comms, LEO PNT, and space edge computing like mission-specific apps.</span>
-              <span data-lang="ko">하나의 위성이 SAR 관측, Direct-to-Cell 통신, LEO PNT, 우주 엣지 컴퓨팅을 임무별 앱처럼 실행합니다.</span>
-            </p>
+          <aside class="video-card" aria-label="spaceD introduction video">
+            <video src="1분 스피치.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+            <div class="video-caption">
+              <strong>
+                <span data-lang="en">spaceD introduction</span>
+                <span data-lang="ko">spaceD 소개 영상</span>
+              </strong>
+              <p>
+                <span data-lang="en">The opening video starts automatically. Use the video controls to turn sound on.</span>
+                <span data-lang="ko">첫 화면에서 영상이 자동 재생됩니다. 소리는 영상 컨트롤에서 켤 수 있습니다.</span>
+              </p>
+            </div>
           </aside>
         </div>
 
         <div class="strip">
           <div>
             <b>SDDS</b>
-            <p data-lang="en">The core paradigm — GPU/NPU-powered datacenter satellites in orbit.</p>
-            <p data-lang="ko">GPU/NPU 기반 우주 데이터센터 위성을 중심에 둔 핵심 패러다임.</p>
+            <p data-lang="en">The core paradigm ??GPU/NPU-powered datacenter satellites in orbit.</p>
+            <p data-lang="ko">GPU/NPU 湲곕컲 ?곗＜ ?곗씠?곗꽱???꾩꽦??以묒떖?????듭떖 ?⑤윭?ㅼ엫.</p>
           </div>
           <div>
             <b>SDR</b>
             <p data-lang="en">A radio layer that changes frequency, modulation, and protocol in software.</p>
-            <p data-lang="ko">주파수·변조·프로토콜을 소프트웨어로 바꾸는 유연한 무선 계층.</p>
+            <p data-lang="ko">二쇳뙆?샕룸?議걔룻봽濡쒗넗肄쒖쓣 ?뚰봽?몄썾?대줈 諛붽씀???좎뿰??臾댁꽑 怨꾩링.</p>
           </div>
           <div>
             <b>AESA</b>
             <p data-lang="en">A multi-beam antenna layer for parallel comms, sensing, and relay.</p>
-            <p data-lang="ko">동시 다중 빔으로 통신·관측·릴레이를 병렬 수행하는 안테나 계층.</p>
+            <p data-lang="ko">?숈떆 ?ㅼ쨷 鍮붿쑝濡??듭떊쨌愿痢≤룸┫?덉씠瑜?蹂묐젹 ?섑뻾?섎뒗 ?덊뀒??怨꾩링.</p>
           </div>
           <div>
             <b>XaaS</b>
             <p data-lang="en">A model delivering satellite capability through APIs and subscriptions.</p>
-            <p data-lang="ko">위성 기능을 API와 구독형 서비스로 제공하는 사업 모델.</p>
+            <p data-lang="ko">?꾩꽦 湲곕뒫??API? 援щ룆???쒕퉬?ㅻ줈 ?쒓났?섎뒗 ?ъ뾽 紐⑤뜽.</p>
           </div>
         </div>
       </div>
@@ -585,39 +695,39 @@
         <div class="section-head">
           <h2>
             <span data-lang="en">Why data infrastructure moves to space</span>
-            <span data-lang="ko">왜 데이터 인프라가 우주로 가는가</span>
+            <span data-lang="ko">???곗씠???명봽?쇨? ?곗＜濡?媛?붽?</span>
           </h2>
-          <p data-lang="en">Like Starcloud's orbital-datacenter story and Cowboy Space's power-and-compute framing, spaceD solves terrestrial bottlenecks by making space assets software-defined — power, thermal, communications, and sensing bound into one service layer.</p>
-          <p data-lang="ko">Starcloud의 우주 데이터센터, Cowboy Space의 전력·컴퓨팅 메시지처럼, spaceD도 지상 인프라의 병목을 우주 자산의 소프트웨어화로 풉니다. 전력·냉각·통신·관측 데이터를 하나의 서비스 레이어로 묶습니다.</p>
+          <p data-lang="en">Like Starcloud's orbital-datacenter story and Cowboy Space's power-and-compute framing, spaceD solves terrestrial bottlenecks by making space assets software-defined ??power, thermal, communications, and sensing bound into one service layer.</p>
+          <p data-lang="ko">Starcloud???곗＜ ?곗씠?곗꽱?? Cowboy Space???꾨젰쨌而댄벂??硫붿떆吏泥섎읆, spaceD??吏???명봽?쇱쓽 蹂묐ぉ???곗＜ ?먯궛???뚰봽?몄썾?댄솕濡??됰땲?? ?꾨젰쨌?됯컖쨌?듭떊쨌愿痢??곗씠?곕? ?섎굹???쒕퉬???덉씠?대줈 臾띠뒿?덈떎.</p>
         </div>
         <div class="grid">
           <article class="card hl">
             <span class="tag">01</span>
             <strong data-lang="en">Orbit-native compute</strong>
-            <strong data-lang="ko">궤도 내 연산</strong>
+            <strong data-lang="ko">沅ㅻ룄 ???곗궛</strong>
             <p data-lang="en">Process raw data onboard with satellite GPUs/NPUs before downlink, cutting latency and bandwidth pressure.</p>
-            <p data-lang="ko">원시 데이터를 지상으로 모두 내리지 않고 위성 내부 GPU/NPU에서 선분석해 지연·대역폭 문제를 줄입니다.</p>
+            <p data-lang="ko">?먯떆 ?곗씠?곕? 吏?곸쑝濡?紐⑤몢 ?대━吏 ?딄퀬 ?꾩꽦 ?대? GPU/NPU?먯꽌 ?좊텇?앺빐 吏?걔룸???룺 臾몄젣瑜?以꾩엯?덈떎.</p>
           </article>
           <article class="card">
             <span class="tag">02</span>
             <strong data-lang="en">Continuous service layers</strong>
-            <strong data-lang="ko">연속적 서비스 레이어</strong>
+            <strong data-lang="ko">?곗냽???쒕퉬???덉씠??/strong>
             <p data-lang="en">Design comms, SAR, PNT, and relay as reconfigurable mission layers, not isolated satellites.</p>
-            <p data-lang="ko">통신·SAR·PNT·릴레이를 별도 위성군이 아닌 재구성 가능한 임무 레이어로 설계합니다.</p>
+            <p data-lang="ko">?듭떊쨌SAR쨌PNT쨌由대젅?대? 蹂꾨룄 ?꾩꽦援곗씠 ?꾨땶 ?ш뎄??媛?ν븳 ?꾨Т ?덉씠?대줈 ?ㅺ퀎?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag">03</span>
             <strong data-lang="en">Updates after launch</strong>
-            <strong data-lang="ko">발사 후 업데이트</strong>
+            <strong data-lang="ko">諛쒖궗 ???낅뜲?댄듃</strong>
             <p data-lang="en">Update waveforms, beams, AI models, and security policy on orbit to extend asset life.</p>
-            <p data-lang="ko">발사 후에도 파형·빔·AI 모델·보안 정책을 업데이트해 자산 수명을 늘립니다.</p>
+            <p data-lang="ko">諛쒖궗 ?꾩뿉???뚰삎쨌鍮붋텮I 紐⑤뜽쨌蹂댁븞 ?뺤콉???낅뜲?댄듃???먯궛 ?섎챸???섎┰?덈떎.</p>
           </article>
           <article class="card">
             <span class="tag">04</span>
             <strong data-lang="en">Commercial repeatability</strong>
-            <strong data-lang="ko">반복 가능한 사업성</strong>
+            <strong data-lang="ko">諛섎났 媛?ν븳 ?ъ뾽??/strong>
             <p data-lang="en">Move from one-off projects to repeatable revenue via APIs, subscriptions, and mission billing.</p>
-            <p data-lang="ko">일회성 프로젝트가 아니라 API·구독·임무 단위 과금으로 반복 매출 구조를 지향합니다.</p>
+            <p data-lang="ko">?쇳쉶???꾨줈?앺듃媛 ?꾨땲??API쨌援щ룆쨌?꾨Т ?⑥쐞 怨쇨툑?쇰줈 諛섎났 留ㅼ텧 援ъ“瑜?吏?ν빀?덈떎.</p>
           </article>
         </div>
       </div>
@@ -629,55 +739,55 @@
         <div class="section-head">
           <h2>
             <span data-lang="en">Our technology stack</span>
-            <span data-lang="ko">기술 스택</span>
+            <span data-lang="ko">湲곗닠 ?ㅽ깮</span>
           </h2>
           <p data-lang="en">spaceD places SDDS as the top-level architecture, SDR and AESA as mission-switching interfaces, and Agentic AI plus secure computing as the foundation for real-time decisions and trust.</p>
-          <p data-lang="ko">spaceD는 SDDS를 최상위 구조로 두고, SDR·AESA를 임무 전환의 핵심 인터페이스로, Agentic AI와 보안 컴퓨팅을 실시간 판단과 신뢰성의 기반으로 배치합니다.</p>
+          <p data-lang="ko">spaceD??SDDS瑜?理쒖긽??援ъ“濡??먭퀬, SDR쨌AESA瑜??꾨Т ?꾪솚???듭떖 ?명꽣?섏씠?ㅻ줈, Agentic AI? 蹂댁븞 而댄벂?낆쓣 ?ㅼ떆媛??먮떒怨??좊ː?깆쓽 湲곕컲?쇰줈 諛곗튂?⑸땲??</p>
         </div>
         <div class="grid three">
           <article class="card hl">
             <span class="tag" data-lang="en">Core paradigm</span>
-            <span class="tag" data-lang="ko">핵심 패러다임</span>
+            <span class="tag" data-lang="ko">?듭떖 ?⑤윭?ㅼ엫</span>
             <strong>SDDS</strong>
             <p data-lang="en">Software-Defined Datacenter Satellite. High-performance compute and virtualization turn the satellite into an orbital server.</p>
-            <p data-lang="ko">Software-Defined Datacenter Satellite. 고성능 컴퓨팅과 가상화로 위성을 궤도 위 서버로 만듭니다.</p>
+            <p data-lang="ko">Software-Defined Datacenter Satellite. 怨좎꽦??而댄벂?낃낵 媛?곹솕濡??꾩꽦??沅ㅻ룄 ???쒕쾭濡?留뚮벊?덈떎.</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Flexible radio</span>
-            <span class="tag" data-lang="ko">유연한 무선</span>
+            <span class="tag" data-lang="ko">?좎뿰??臾댁꽑</span>
             <strong>SDR</strong>
             <p data-lang="en">Reduce rigid RF hardware and switch bands, modulation, and protocols by mission demand.</p>
-            <p data-lang="ko">물리 RF 장비의 경직성을 줄이고 대역·변조·프로토콜을 임무에 맞게 전환합니다.</p>
+            <p data-lang="ko">臾쇰━ RF ?λ퉬??寃쎌쭅?깆쓣 以꾩씠怨????룸?議걔룻봽濡쒗넗肄쒖쓣 ?꾨Т??留욊쾶 ?꾪솚?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Multi-beam</span>
-            <span class="tag" data-lang="ko">다중 빔</span>
+            <span class="tag" data-lang="ko">?ㅼ쨷 鍮?/span>
             <strong>AESA</strong>
             <p data-lang="en">Electronic steering and digital beamforming deliver comms, SAR, and relay across regions at once.</p>
-            <p data-lang="ko">전자식 빔 조향과 디지털 빔포밍으로 다중 지역에 통신·SAR·릴레이를 동시에 제공합니다.</p>
+            <p data-lang="ko">?꾩옄??鍮?議고뼢怨??붿???鍮뷀룷諛띿쑝濡??ㅼ쨷 吏??뿉 ?듭떊쨌SAR쨌由대젅?대? ?숈떆???쒓났?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Autonomy</span>
-            <span class="tag" data-lang="ko">자율성</span>
+            <span class="tag" data-lang="ko">?먯쑉??/span>
             <strong>Agentic AI</strong>
             <p data-lang="en">Detect, classify, prioritize, and operate constellations onboard before ground intervention.</p>
-            <p data-lang="ko">위성에서 직접 탐지·분류·우선순위화·군집 운용을 수행해 지상국 개입 전 판단 속도를 높입니다.</p>
+            <p data-lang="ko">?꾩꽦?먯꽌 吏곸젒 ?먯?쨌遺꾨쪟쨌?곗꽑?쒖쐞?붋룰뎔吏??댁슜???섑뻾??吏?곴뎅 媛쒖엯 ???먮떒 ?띾룄瑜??믪엯?덈떎.</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Reliability</span>
-            <span class="tag" data-lang="ko">신뢰성</span>
+            <span class="tag" data-lang="ko">?좊ː??/span>
             <strong data-lang="en">Radiation Protection</strong>
-            <strong data-lang="ko">방사선 보호</strong>
+            <strong data-lang="ko">諛⑹궗??蹂댄샇</strong>
             <p data-lang="en">Protect electronics, compute modules, and payloads for reliable operation in radiation-heavy orbits.</p>
-            <p data-lang="ko">방사선 환경에서 전자부품·컴퓨팅 모듈·페이로드가 안정 동작하도록 보호 전략을 설계합니다.</p>
+            <p data-lang="ko">諛⑹궗???섍꼍?먯꽌 ?꾩옄遺?댟룹뺨?⑦똿 紐⑤뱢쨌?섏씠濡쒕뱶媛 ?덉젙 ?숈옉?섎룄濡?蹂댄샇 ?꾨왂???ㅺ퀎?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Trust</span>
-            <span class="tag" data-lang="ko">보안</span>
+            <span class="tag" data-lang="ko">蹂댁븞</span>
             <strong data-lang="en">Security</strong>
-            <strong data-lang="ko">보안</strong>
+            <strong data-lang="ko">蹂댁븞</strong>
             <p data-lang="en">Encrypted links, access control, anti-jamming, and data protection built into the service.</p>
-            <p data-lang="ko">암호화 통신·접근 제어·재밍 대응·데이터 보호를 서비스 기본 계층으로 포함합니다.</p>
+            <p data-lang="ko">?뷀샇???듭떊쨌?묎렐 ?쒖뼱쨌?щ컢 ??뫢룸뜲?댄꽣 蹂댄샇瑜??쒕퉬??湲곕낯 怨꾩링?쇰줈 ?ы븿?⑸땲??</p>
           </article>
         </div>
       </div>
@@ -689,45 +799,45 @@
         <div class="section-head">
           <h2>
             <span data-lang="en">SDDS first, XaaS next</span>
-            <span data-lang="ko">먼저 SDDS, 다음은 XaaS</span>
+            <span data-lang="ko">癒쇱? SDDS, ?ㅼ쓬? XaaS</span>
           </h2>
           <p data-lang="en">The structure is simple. SDDS is the operating system for orbital infrastructure; XaaS opens the layer where customers subscribe to or call capabilities through APIs.</p>
-          <p data-lang="ko">구조는 단순합니다. SDDS가 궤도 인프라의 운영체제 역할을 하고, 그 위에서 고객이 필요한 기능을 구독하거나 API로 호출하는 XaaS가 열립니다.</p>
+          <p data-lang="ko">援ъ“???⑥닚?⑸땲?? SDDS媛 沅ㅻ룄 ?명봽?쇱쓽 ?댁쁺泥댁젣 ??븷???섍퀬, 洹??꾩뿉??怨좉컼???꾩슂??湲곕뒫??援щ룆?섍굅??API濡??몄텧?섎뒗 XaaS媛 ?대┰?덈떎.</p>
         </div>
         <div class="orbit-map">
           <div class="architecture" aria-label="SDDS architecture map">
             <div class="ring"></div>
             <div class="ring two"></div>
-            <div class="core">SDDS<small data-lang="en">Orbital Datacenter</small><small data-lang="ko">궤도 데이터센터</small></div>
-            <div class="node sdr">SDR<small data-lang="en">Waveforms</small><small data-lang="ko">파형</small></div>
-            <div class="node aesa">AESA<small data-lang="en">Multi-beam</small><small data-lang="ko">다중 빔</small></div>
-            <div class="node ai">Agentic AI<small data-lang="en">Edge decisions</small><small data-lang="ko">엣지 판단</small></div>
-            <div class="node security">Security<small data-lang="en">Trusted service</small><small data-lang="ko">신뢰 서비스</small></div>
+            <div class="core">SDDS<small data-lang="en">Orbital Datacenter</small><small data-lang="ko">沅ㅻ룄 ?곗씠?곗꽱??/small></div>
+            <div class="node sdr">SDR<small data-lang="en">Waveforms</small><small data-lang="ko">?뚰삎</small></div>
+            <div class="node aesa">AESA<small data-lang="en">Multi-beam</small><small data-lang="ko">?ㅼ쨷 鍮?/small></div>
+            <div class="node ai">Agentic AI<small data-lang="en">Edge decisions</small><small data-lang="ko">?ｌ? ?먮떒</small></div>
+            <div class="node security">Security<small data-lang="en">Trusted service</small><small data-lang="ko">?좊ː ?쒕퉬??/small></div>
           </div>
           <div class="stack">
             <article class="stack-card">
               <strong data-lang="en">1. Universal hardware</strong>
-              <strong data-lang="ko">1. 범용 하드웨어</strong>
+              <strong data-lang="ko">1. 踰붿슜 ?섎뱶?⑥뼱</strong>
               <p data-lang="en">The spacecraft becomes a platform; onboard compute and RF/AESA process multiple missions at once.</p>
-              <p data-lang="ko">위성체는 플랫폼이 되고, 탑재 컴퓨팅과 RF/AESA 계층이 여러 임무를 동시에 처리합니다.</p>
+              <p data-lang="ko">?꾩꽦泥대뒗 ?뚮옯?쇱씠 ?섍퀬, ?묒옱 而댄벂?낃낵 RF/AESA 怨꾩링???щ윭 ?꾨Т瑜??숈떆??泥섎━?⑸땲??</p>
             </article>
             <article class="stack-card">
               <strong data-lang="en">2. Software-defined missions</strong>
-              <strong data-lang="ko">2. 소프트웨어 정의 임무</strong>
+              <strong data-lang="ko">2. ?뚰봽?몄썾???뺤쓽 ?꾨Т</strong>
               <p data-lang="en">Missions aren't fixed before launch; on-orbit updates switch between comms, sensing, navigation, and AI.</p>
-              <p data-lang="ko">임무는 발사 전에 고정되지 않고, 궤도상 업데이트로 통신·관측·항법·AI 분석으로 전환됩니다.</p>
+              <p data-lang="ko">?꾨Т??諛쒖궗 ?꾩뿉 怨좎젙?섏? ?딄퀬, 沅ㅻ룄???낅뜲?댄듃濡??듭떊쨌愿痢≤룻빆踰빧텮I 遺꾩꽍?쇰줈 ?꾪솚?⑸땲??</p>
             </article>
             <article class="stack-card">
               <strong data-lang="en">3. Subscription services</strong>
-              <strong data-lang="ko">3. 구독형 서비스</strong>
+              <strong data-lang="ko">3. 援щ룆???쒕퉬??/strong>
               <p data-lang="en">Customers use data, connectivity, compute, and navigation as services without owning the satellite.</p>
-              <p data-lang="ko">고객은 위성을 소유하지 않고 데이터·연결성·연산·항법 기능을 서비스로 사용합니다.</p>
+              <p data-lang="ko">怨좉컼? ?꾩꽦???뚯쑀?섏? ?딄퀬 ?곗씠?걔룹뿰寃곗꽦쨌?곗궛쨌??쾿 湲곕뒫???쒕퉬?ㅻ줈 ?ъ슜?⑸땲??</p>
             </article>
             <article class="stack-card">
               <strong data-lang="en">4. Scalable constellation</strong>
-              <strong data-lang="ko">4. 확장 가능한 군집</strong>
+              <strong data-lang="ko">4. ?뺤옣 媛?ν븳 援곗쭛</strong>
               <p data-lang="en">As the constellation scales, service combinations and availability scale with each satellite's versatility.</p>
-              <p data-lang="ko">군집이 커질수록 각 위성의 다목적성을 기반으로 서비스 조합과 가용성이 함께 확장됩니다.</p>
+              <p data-lang="ko">援곗쭛??而ㅼ쭏?섎줉 媛??꾩꽦???ㅻぉ?곸꽦??湲곕컲?쇰줈 ?쒕퉬??議고빀怨?媛?⑹꽦???④퍡 ?뺤옣?⑸땲??</p>
             </article>
           </div>
         </div>
@@ -740,35 +850,35 @@
         <div class="section-head">
           <h2>
             <span data-lang="en">Everything as a Space Service</span>
-            <span data-lang="ko">모든 것을 우주 서비스로</span>
+            <span data-lang="ko">紐⑤뱺 寃껋쓣 ?곗＜ ?쒕퉬?ㅻ줈</span>
           </h2>
           <p data-lang="en">XaaS is spaceD's business model. Governments, enterprises, and research institutions repeatedly use satellite capability without building and launching their own infrastructure.</p>
-          <p data-lang="ko">XaaS는 spaceD의 사업 모델입니다. 우주 인프라를 직접 개발·발사하지 않아도 정부·기업·연구기관이 위성 기능을 반복적으로 사용할 수 있게 합니다.</p>
+          <p data-lang="ko">XaaS??spaceD???ъ뾽 紐⑤뜽?낅땲?? ?곗＜ ?명봽?쇰? 吏곸젒 媛쒕컻쨌諛쒖궗?섏? ?딆븘???뺣?쨌湲곗뾽쨌?곌뎄湲곌????꾩꽦 湲곕뒫??諛섎났?곸쑝濡??ъ슜?????덇쾶 ?⑸땲??</p>
         </div>
         <div class="grid">
           <article class="card">
             <span class="tag">01</span>
             <strong>Data-as-a-Service</strong>
             <p data-lang="en">Preprocess SAR, optical, and RF data with onboard AI to deliver change detection and analysis.</p>
-            <p data-lang="ko">SAR·광학·RF 데이터를 위성 내 AI로 선처리해 변화 탐지·분석 결과를 제공합니다.</p>
+            <p data-lang="ko">SAR쨌愿묓븰쨌RF ?곗씠?곕? ?꾩꽦 ??AI濡??좎쿂由ы빐 蹂???먯?쨌遺꾩꽍 寃곌낵瑜??쒓났?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag">02</span>
             <strong>Connectivity-as-a-Service</strong>
             <p data-lang="en">DTC, broadband, tactical comms, and inter-satellite links as configurable connectivity.</p>
-            <p data-lang="ko">DTC·광대역·전술 통신·위성 간 링크를 수요에 따라 구성 가능한 연결성으로 제공합니다.</p>
+            <p data-lang="ko">DTC쨌愿묐???룹쟾???듭떊쨌?꾩꽦 媛?留곹겕瑜??섏슂???곕씪 援ъ꽦 媛?ν븳 ?곌껐?깆쑝濡??쒓났?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag">03</span>
             <strong>Compute-as-a-Service</strong>
             <p data-lang="en">Allocate orbital GPU/NPU to edge AI, mission automation, and data compression/analytics.</p>
-            <p data-lang="ko">궤도 위 GPU/NPU 자원을 엣지 AI·임무 자동화·데이터 압축/분석 워크로드에 할당합니다.</p>
+            <p data-lang="ko">沅ㅻ룄 ??GPU/NPU ?먯썝???ｌ? AI쨌?꾨Т ?먮룞?붋룸뜲?댄꽣 ?뺤텞/遺꾩꽍 ?뚰겕濡쒕뱶???좊떦?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag">04</span>
             <strong>PNT-as-a-Service</strong>
             <p data-lang="en">Augment positioning, navigation, and timing for autonomy, drones, and defense with LEO signals.</p>
-            <p data-lang="ko">저궤도 보정 신호로 자율주행·드론·국방 운용의 위치·항법·시각 정밀도를 보강합니다.</p>
+            <p data-lang="ko">?沅ㅻ룄 蹂댁젙 ?좏샇濡??먯쑉二쇳뻾쨌?쒕줎쨌援?갑 ?댁슜???꾩튂쨌??쾿쨌?쒓컖 ?뺣??꾨? 蹂닿컯?⑸땲??</p>
           </article>
         </div>
       </div>
@@ -780,39 +890,39 @@
         <div class="quote">
           <strong>
             <span data-lang="en">The money is in the data, not the rocket shell.</span>
-            <span data-lang="ko">가치는 로켓 껍데기가 아니라 데이터에 있습니다.</span>
+            <span data-lang="ko">媛移섎뒗 濡쒖폆 猿띾뜲湲곌? ?꾨땲???곗씠?곗뿉 ?덉뒿?덈떎.</span>
           </strong>
           <p data-lang="en">Rockets are transportation. Durable value comes from the data and services orbital servers process. spaceD treats satellites as updateable platforms and commercializes the apps and APIs on top.</p>
-          <p data-lang="ko">로켓은 운송 수단이고, 지속적 가치는 궤도 위 서버가 처리하는 데이터와 서비스에서 나옵니다. spaceD는 위성을 업데이트 가능한 플랫폼으로 보고 그 위의 앱과 API를 사업화합니다.</p>
+          <p data-lang="ko">濡쒖폆? ?댁넚 ?섎떒?닿퀬, 吏?띿쟻 媛移섎뒗 沅ㅻ룄 ???쒕쾭媛 泥섎━?섎뒗 ?곗씠?곗? ?쒕퉬?ㅼ뿉???섏샃?덈떎. spaceD???꾩꽦???낅뜲?댄듃 媛?ν븳 ?뚮옯?쇱쑝濡?蹂닿퀬 洹??꾩쓽 ?깃낵 API瑜??ъ뾽?뷀빀?덈떎.</p>
         </div>
         <div class="grid two">
           <article class="card">
             <span class="tag" data-lang="en">Killer service</span>
-            <span class="tag" data-lang="ko">킬러 서비스</span>
+            <span class="tag" data-lang="ko">?щ윭 ?쒕퉬??/span>
             <strong>SAR + AI</strong>
             <p data-lang="en">Analyze sensing data before downlink to detect disaster, security, and infrastructure change at very low latency.</p>
-            <p data-lang="ko">관측 데이터를 지상 전송 전에 분석해 재난·안보·인프라 변화를 초저지연으로 탐지합니다.</p>
+            <p data-lang="ko">愿痢??곗씠?곕? 吏???꾩넚 ?꾩뿉 遺꾩꽍???щ궃쨌?덈낫쨌?명봽??蹂?붾? 珥덉?吏?곗쑝濡??먯??⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Killer service</span>
-            <span class="tag" data-lang="ko">킬러 서비스</span>
+            <span class="tag" data-lang="ko">?щ윭 ?쒕퉬??/span>
             <strong>LEO PNT</strong>
             <p data-lang="en">Strong LEO signals complement vulnerable GNSS for precise navigation.</p>
-            <p data-lang="ko">기존 GNSS 취약 구간을 보완하는 강한 저궤도 신호로 정밀 항법을 지원합니다.</p>
+            <p data-lang="ko">湲곗〈 GNSS 痍⑥빟 援ш컙??蹂댁셿?섎뒗 媛뺥븳 ?沅ㅻ룄 ?좏샇濡??뺣? ??쾿??吏?먰빀?덈떎.</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Killer service</span>
-            <span class="tag" data-lang="ko">킬러 서비스</span>
+            <span class="tag" data-lang="ko">?щ윭 ?쒕퉬??/span>
             <strong>DTC relay</strong>
             <p data-lang="en">Connect directly to smartphones where ground stations are absent or damaged.</p>
-            <p data-lang="ko">지상 기지국이 부족하거나 손상된 지역에서도 스마트폰과 직접 연결되는 경로를 제공합니다.</p>
+            <p data-lang="ko">吏??湲곗?援?씠 遺議깊븯嫄곕굹 ?먯긽??吏??뿉?쒕룄 ?ㅻ쭏?명룿怨?吏곸젒 ?곌껐?섎뒗 寃쎈줈瑜??쒓났?⑸땲??</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Killer service</span>
-            <span class="tag" data-lang="ko">킬러 서비스</span>
+            <span class="tag" data-lang="ko">?щ윭 ?쒕퉬??/span>
             <strong>Secure routing</strong>
             <p data-lang="en">Combine encrypted routing with anti-jamming to raise resilience for mission-critical comms.</p>
-            <p data-lang="ko">암호화 라우팅과 재밍 대응을 결합해 임무 중요 통신의 복원력과 신뢰성을 높입니다.</p>
+            <p data-lang="ko">?뷀샇???쇱슦?낃낵 ?щ컢 ??묒쓣 寃고빀???꾨Т 以묒슂 ?듭떊??蹂듭썝?κ낵 ?좊ː?깆쓣 ?믪엯?덈떎.</p>
           </article>
         </div>
       </div>
@@ -824,32 +934,80 @@
         <div class="section-head">
           <h2>
             <span data-lang="en">Built for deep-tech execution</span>
-            <span data-lang="ko">딥테크 실행을 위한 팀</span>
+            <span data-lang="ko">?ν뀒???ㅽ뻾???꾪븳 ?</span>
           </h2>
           <p data-lang="en">This section can later hold real profiles for leadership, engineering, research, and advisors. For now it follows a founder-and-team flow and organizes by role.</p>
-          <p data-lang="ko">이 영역은 향후 리더십·엔지니어링·연구·자문단의 실제 프로필로 채웁니다. 현재는 역할 중심으로 배치했습니다.</p>
+          <p data-lang="ko">???곸뿭? ?ν썑 由щ뜑??룹뿏吏?덉뼱留겶룹뿰援?룹옄臾몃떒???ㅼ젣 ?꾨줈?꾨줈 梨꾩썎?덈떎. ?꾩옱????븷 以묒떖?쇰줈 諛곗튂?덉뒿?덈떎.</p>
         </div>
         <div class="grid three">
           <article class="card person">
             <div class="role">LEADERSHIP</div>
             <strong data-lang="en">Vision &amp; partnerships</strong>
-            <strong data-lang="ko">비전 &amp; 파트너십</strong>
+            <strong data-lang="ko">鍮꾩쟾 &amp; ?뚰듃?덉떗</strong>
             <p data-lang="en">Align research direction, partnerships, and commercialization priorities.</p>
-            <p data-lang="ko">연구 방향·파트너십·사업화 우선순위를 정렬합니다.</p>
+            <p data-lang="ko">?곌뎄 諛⑺뼢쨌?뚰듃?덉떗쨌?ъ뾽???곗꽑?쒖쐞瑜??뺣젹?⑸땲??</p>
           </article>
           <article class="card person">
             <div class="role">ENGINEERING</div>
             <strong data-lang="en">Payload &amp; platform</strong>
-            <strong data-lang="ko">탑재체 &amp; 플랫폼</strong>
+            <strong data-lang="ko">?묒옱泥?&amp; ?뚮옯??/strong>
             <p data-lang="en">Integrate SDR, AESA, onboard compute, power/thermal, and radiation protection into one platform.</p>
-            <p data-lang="ko">SDR·AESA·탑재 컴퓨팅·전력/열관리·방사선 보호를 하나의 위성 플랫폼으로 통합합니다.</p>
+            <p data-lang="ko">SDR쨌AESA쨌?묒옱 而댄벂?끒룹쟾???닿?由?룸갑?ъ꽑 蹂댄샇瑜??섎굹???꾩꽦 ?뚮옯?쇱쑝濡??듯빀?⑸땲??</p>
           </article>
           <article class="card person">
             <div class="role">RESEARCH</div>
             <strong data-lang="en">Architecture &amp; missions</strong>
-            <strong data-lang="ko">구조 &amp; 임무</strong>
+            <strong data-lang="ko">援ъ“ &amp; ?꾨Т</strong>
             <p data-lang="en">Define technical validation and service scenarios for SAR, PNT, DTC, and space edge AI.</p>
-            <p data-lang="ko">SAR·PNT·DTC·우주 엣지 AI의 기술 검증과 서비스 시나리오를 구체화합니다.</p>
+            <p data-lang="ko">SAR쨌PNT쨌DTC쨌?곗＜ ?ｌ? AI??湲곗닠 寃利앷낵 ?쒕퉬???쒕굹由ъ삤瑜?援ъ껜?뷀빀?덈떎.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section class="band" id="members">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>
+            <span data-lang="en">Member</span>
+            <span data-lang="ko">Member</span>
+          </h2>
+          <p data-lang="en">Add or remove member cards as the team grows. Replace the image file names and names below when profile photos are ready.</p>
+          <p data-lang="ko">팀원이 확정되면 아래 카드의 이미지 파일명과 이름만 바꾸면 됩니다. 카드를 복제하면 4~6명 이상도 같은 레이아웃으로 적용됩니다.</p>
+        </div>
+        <div class="member-grid">
+          <article class="card member-card">
+            <div class="member-photo">
+              <img src="member-01.jpg" alt="Member 01" onerror="this.remove();">
+              <span class="member-placeholder">01</span>
+            </div>
+            <div class="member-name">Member Name</div>
+            <div class="member-title">Role / Position</div>
+          </article>
+          <article class="card member-card">
+            <div class="member-photo">
+              <img src="member-02.jpg" alt="Member 02" onerror="this.remove();">
+              <span class="member-placeholder">02</span>
+            </div>
+            <div class="member-name">Member Name</div>
+            <div class="member-title">Role / Position</div>
+          </article>
+          <article class="card member-card">
+            <div class="member-photo">
+              <img src="member-03.jpg" alt="Member 03" onerror="this.remove();">
+              <span class="member-placeholder">03</span>
+            </div>
+            <div class="member-name">Member Name</div>
+            <div class="member-title">Role / Position</div>
+          </article>
+          <article class="card member-card">
+            <div class="member-photo">
+              <img src="member-04.jpg" alt="Member 04" onerror="this.remove();">
+              <span class="member-placeholder">04</span>
+            </div>
+            <div class="member-name">Member Name</div>
+            <div class="member-title">Role / Position</div>
           </article>
         </div>
       </div>
@@ -860,18 +1018,18 @@
       <div class="wrap">
         <h2>
           <span data-lang="en">Build orbital data infrastructure with spaceD.</span>
-          <span data-lang="ko">spaceD와 함께 궤도 데이터 인프라를 만듭니다.</span>
+          <span data-lang="ko">spaceD? ?④퍡 沅ㅻ룄 ?곗씠???명봽?쇰? 留뚮벊?덈떎.</span>
         </h2>
         <p>
           <span data-lang="en">We're looking for research, industry, and defense partners to validate an orbital datacenter satellite platform combining SDDS, SDR, AESA, and Agentic AI.</span>
-          <span data-lang="ko">SDDS·SDR·AESA·Agentic AI를 결합한 우주 데이터센터 위성 플랫폼을 함께 검증할 연구·산업·국방 파트너를 찾습니다.</span>
+          <span data-lang="ko">SDDS쨌SDR쨌AESA쨌Agentic AI瑜?寃고빀???곗＜ ?곗씠?곗꽱???꾩꽦 ?뚮옯?쇱쓣 ?④퍡 寃利앺븷 ?곌뎄쨌?곗뾽쨌援?갑 ?뚰듃?덈? 李얠뒿?덈떎.</span>
         </p>
         <div class="actions">
           <a class="button primary" href="mailto:syntax.kmu@gmail.com">
-            <span data-lang="en">Get in touch</span><span data-lang="ko">문의하기</span>
+            <span data-lang="en">Get in touch</span><span data-lang="ko">臾몄쓽?섍린</span>
           </a>
           <a class="button" href="#top">
-            <span data-lang="en">Back to top</span><span data-lang="ko">맨 위로</span>
+            <span data-lang="en">Back to top</span><span data-lang="ko">留??꾨줈</span>
           </a>
         </div>
       </div>
@@ -881,20 +1039,70 @@
   <footer>
     <div class="wrap footer-inner">
       <span class="fbrand">
-        <img src="spaced-logo-white.png" alt="spaceD">
+        <img src="spaced-logo-cutout-white.png" alt="spaceD">
       </span>
       <address>
         <span data-lang="en">Company: spaceD<br>6F, Yeosam Building, 123 Teheran-ro, Gangnam-gu, Seoul</span>
-        <span data-lang="ko">회사명: spaceD<br>서울 강남구 테헤란로 123 여삼빌딩 6층</span>
+        <span data-lang="ko">?뚯궗紐? spaceD<br>?쒖슱 媛뺣궓援??뚰뿤?濡?123 ?ъ궪鍮뚮뵫 6痢?/span>
       </address>
     </div>
   </footer>
 
   <script>
+    const routes = new Set(Array.from(document.querySelectorAll("main > section[id]")).map((section) => section.id));
+    const navLinks = Array.from(document.querySelectorAll("nav a[href^='#']"));
+    const routeLinks = Array.from(document.querySelectorAll("a[href^='#']"));
+    const introVideo = document.querySelector(".video-card video");
+
+    function showRoute(route, updateHash = true) {
+      const nextRoute = routes.has(route) ? route : "top";
+
+      document.querySelectorAll("main > section[id]").forEach((section) => {
+        section.classList.toggle("is-active", section.id === nextRoute);
+      });
+
+      navLinks.forEach((link) => {
+        const isCurrent = link.getAttribute("href") === `#${nextRoute}`;
+        if (isCurrent) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      if (introVideo) {
+        if (nextRoute === "top") {
+          introVideo.play().catch(() => {});
+        } else {
+          introVideo.pause();
+        }
+      }
+
+      if (updateHash) {
+        history.pushState({ route: nextRoute }, "", `#${nextRoute}`);
+      }
+    }
+
+    routeLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const route = link.getAttribute("href").slice(1);
+        if (!routes.has(route)) return;
+        event.preventDefault();
+        showRoute(route);
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      showRoute(location.hash.replace("#", "") || "top", false);
+    });
+
     document.querySelector(".lang-toggle").addEventListener("click", () => {
       const root = document.documentElement;
       root.lang = root.lang === "en" ? "ko" : "en";
     });
+
+    showRoute(location.hash.replace("#", "") || "top", false);
   </script>
 </body>
 </html>
+
