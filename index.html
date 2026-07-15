@@ -585,6 +585,54 @@
     }
     .member-fact li + li { margin-top: 7px; }
 
+    /* icon links (external profiles) */
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--soft);
+      text-decoration: none;
+      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+    }
+    .icon-link:hover { border-color: var(--line-strong); background: var(--panel-2); transform: translateY(-1px); }
+    .icon-link svg { width: 20px; height: 20px; display: block; }
+
+    .member-fact a {
+      color: #7ff3e2;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(127, 243, 226, 0.35);
+    }
+    .member-fact a:hover { border-bottom-color: #7ff3e2; }
+    .member-fact em { font-style: italic; color: var(--soft); }
+
+    .member-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .wiki-link {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #f6f8fc;
+    }
+    .wiki-link:hover { color: #fff; }
+    .naver-link {
+      background: #03c75a;
+      border-color: #03c75a;
+      color: #fff;
+      font-weight: 800;
+      font-size: 17px;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .naver-link:hover { background: #04b152; border-color: #04b152; color: #fff; }
+
     /* footer */
     footer {
       border-top: 1px solid rgba(246, 248, 252, 0.08);
@@ -606,6 +654,10 @@
       line-height: 1.6;
       text-align: right;
     }
+    .footer-contact { display: flex; align-items: center; gap: 16px; }
+    .footer-yt { display: inline-flex; align-items: center; flex: none; transition: transform .15s ease, opacity .15s ease; }
+    .footer-yt:hover { transform: translateY(-1px); opacity: .85; }
+    .footer-yt svg { display: block; width: 30px; height: auto; }
 
     /* language display */
     html[lang="en"] [data-lang="ko"] { display: none !important; }
@@ -1014,14 +1066,22 @@
                     <li>Former President, Korea Aerospace Research Institute</li>
                     <li>Led Naro-1, KOMPSAT-3/5, STSat-3 and Smart UAV programs</li>
                     <li>AIAA Fellow and Institute of Physics Fellow</li>
+                    <li>Author of <em>Disruptive Innovation in Space Technology</em> and <em>Disruptive Innovation of Urban Air Mobility (UAM)</em></li>
+                    <li>Regular opinion columnist for the <a href="https://www.joongang.co.kr/series/11800" target="_blank" rel="noopener">JoongAng Ilbo</a></li>
                   </ul>
                   <ul data-lang="ko">
                     <li>서울대학교 항공우주공학과 교수, 1986–2011</li>
                     <li>한국항공우주연구원 원장 역임</li>
                     <li>나로호, 아리랑 3·5호, 과학기술위성 3호 및 스마트 무인기 사업 주도</li>
                     <li>미국항공우주학회 및 영국물리학회 석학회원</li>
+                    <li>『우주기술의 파괴적 혁신』, 『파괴적 혁신의 도심항공교통(UAM)』 집필</li>
+                    <li><a href="https://www.joongang.co.kr/series/11800" target="_blank" rel="noopener">중앙일보</a> 오피니언 정기 기고</li>
                   </ul>
                 </section>
+              </div>
+              <div class="member-links">
+                <a class="icon-link wiki-link" href="https://en.wikipedia.org/wiki/Seung_Jo_Kim" target="_blank" rel="noopener" aria-label="Wikipedia — Seung Jo Kim">W</a>
+                <a class="icon-link naver-link" data-lang="ko" href="https://m.blog.naver.com/PostList.naver?blogId=spsssjk&amp;tab=1" target="_blank" rel="noopener" aria-label="네이버 블로그">N</a>
               </div>
             </div>
           </article>
@@ -1057,10 +1117,18 @@
       <span class="fbrand">
         <img src="spaced-logo-cutout-white.png" alt="SpaceD">
       </span>
-      <address>
-        <span data-lang="en">Company: SpaceD<br>6F, Yeosam Building, 123 Teheran-ro, Gangnam-gu, Seoul</span>
-        <span data-lang="ko">회사명: SpaceD<br>서울 강남구 테헤란로 123 여삼빌딩 6층</span>
-      </address>
+      <div class="footer-contact">
+        <address>
+          <span data-lang="en">Company: SpaceD<br>6F, Yeosam Building, 123 Teheran-ro, Gangnam-gu, Seoul</span>
+          <span data-lang="ko">회사명: SpaceD<br>서울 강남구 테헤란로 123 여삼빌딩 6층</span>
+        </address>
+        <a class="footer-yt" href="https://www.youtube.com/channel/UCDpyFADpNgInzxWFf0CTdUg" target="_blank" rel="noopener" aria-label="SpaceD YouTube">
+          <svg viewBox="0 0 28 20" width="30" height="21" aria-hidden="true" focusable="false">
+            <path d="M27.4 3.12A3.52 3.52 0 0 0 24.93.63C22.75 0 14 0 14 0S5.25 0 3.07.63A3.52 3.52 0 0 0 .6 3.12 36.9 36.9 0 0 0 0 10a36.9 36.9 0 0 0 .6 6.88 3.52 3.52 0 0 0 2.47 2.49C5.25 20 14 20 14 20s8.75 0 10.93-.63a3.52 3.52 0 0 0 2.47-2.49A36.9 36.9 0 0 0 28 10a36.9 36.9 0 0 0-.6-6.88Z" fill="#FF0000"/>
+            <path d="M11.2 14.29 18.5 10l-7.3-4.29Z" fill="#fff"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </footer>
 
