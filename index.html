@@ -782,10 +782,10 @@
               <span data-lang="ko">SpaceD는 위성을 단일 목적 장비에서 궤도 데이터센터로 재정의합니다. SDDS 아키텍처 위에 SDR, AESA, Agentic AI와 보안 컴퓨팅을 결합해 통신, 센싱, 항법과 엣지 AI를 소프트웨어 정의 서비스로 전환합니다.</span>
             </p>
             <div class="actions">
-              <a class="button primary" href="#architecture">
+              <a class="button primary" href="/sdds/">
                 <span data-lang="en">Explore SDDS</span><span data-lang="ko">SDDS 살펴보기</span>
               </a>
-              <a class="button" href="#services">
+              <a class="button" href="/xaas/">
                 <span data-lang="en">View XaaS model</span><span data-lang="ko">XaaS 모델 보기</span>
               </a>
             </div>
@@ -1441,6 +1441,8 @@
     // legacy hashes kept working after a section was renamed
     const routeAliases = { members: "people" };
 
+    const cleanUrl = () => location.pathname + location.search;
+
     function showRoute(route, updateHash = true) {
       const resolved = routeAliases[route] || route;
       const nextRoute = routes.has(resolved) ? resolved : "top";
@@ -1467,7 +1469,9 @@
       }
 
       if (updateHash) {
-        history.pushState({ route: nextRoute }, "", `#${nextRoute}`);
+        // the home route is the bare address, not "#top"
+        const url = nextRoute === "top" ? cleanUrl() : `#${nextRoute}`;
+        history.pushState({ route: nextRoute }, "", url);
       }
     }
 
@@ -1489,7 +1493,13 @@
       root.lang = root.lang === "en" ? "ko" : "en";
     });
 
-    showRoute(location.hash.replace("#", "") || "top", false);
+    const initialRoute = location.hash.replace("#", "") || "top";
+    const resolvedInitial = routeAliases[initialRoute] || initialRoute;
+    showRoute(initialRoute, false);
+    // a hash that lands on the home route is dropped from the address bar
+    if (location.hash && (resolvedInitial === "top" || !routes.has(resolvedInitial))) {
+      history.replaceState({ route: "top" }, "", cleanUrl());
+    }
   </script>
 </body>
 </html>
