@@ -543,11 +543,14 @@
       font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.01em;
+      word-break: keep-all;
     }
     .member-title {
       margin-top: 4px;
       color: var(--muted);
       font-size: 13.5px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
     .member-bio {
       margin-top: 14px;
@@ -582,8 +585,47 @@
       color: var(--soft);
       font-size: 13.5px;
       line-height: 1.65;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
     .member-fact li + li { margin-top: 7px; }
+    .member-fact--wide { grid-column: 1 / -1; }
+    .member-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .member-tag {
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .045);
+      color: var(--soft);
+      font-size: 12.5px;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+
+    /* people groups (leadership / advisory board) */
+    .people-group + .people-group { margin-top: clamp(40px, 6vw, 66px); }
+    .people-group-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 16px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .people-group-head h3 {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .people-group-head p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
 
     /* icon links (external profiles) */
     .icon-link {
@@ -713,7 +755,7 @@
         <a href="/sdds/" data-lang="en">SDDS</a><a href="/sdds/" data-lang="ko">SDDS</a>
         <a href="/xaas/" data-lang="en">XaaS</a><a href="/xaas/" data-lang="ko">XaaS</a>
         <a href="/applications/" data-lang="en">Applications</a><a href="/applications/" data-lang="ko">활용</a>
-        <a href="#members" data-lang="en">Member</a><a href="#members" data-lang="ko">구성원</a>
+        <a href="#people" data-lang="en">People</a><a href="#people" data-lang="ko">구성원</a>
       </nav>
       <div class="header-cta">
         <button class="lang-toggle" type="button" aria-label="Toggle language">
@@ -1018,18 +1060,25 @@
       </div>
     </section>
 
-    <!-- MEMBERS -->
-    <section class="band" id="members">
+    <!-- PEOPLE -->
+    <section class="band" id="people">
       <div class="wrap">
         <div class="section-head">
           <h2>
-            <span data-lang="en">Member</span>
+            <span data-lang="en">People</span>
             <span data-lang="ko">구성원</span>
           </h2>
-          <p data-lang="en">Meet the leadership building SpaceD's software-defined orbital infrastructure.</p>
-          <p data-lang="ko">SpaceD의 소프트웨어 정의 궤도 인프라를 이끄는 리더십을 소개합니다.</p>
+          <p data-lang="en">Meet the leadership and advisors building SpaceD's software-defined orbital infrastructure.</p>
+          <p data-lang="ko">SpaceD의 소프트웨어 정의 궤도 인프라를 만들어 가는 리더십과 자문단을 소개합니다.</p>
         </div>
-        <div class="member-grid">
+
+        <div class="people-group">
+          <div class="people-group-head">
+            <h3><span data-lang="en">Leadership</span><span data-lang="ko">리더십</span></h3>
+            <p data-lang="en">Strategy, research partnerships, and commercialization.</p>
+            <p data-lang="ko">전략, 연구 협력과 사업화를 총괄합니다.</p>
+          </div>
+          <div class="member-grid">
           <article class="card member-card">
             <div class="member-photo">
               <img src="/member-seungjo-kim.jpg" alt="김승조 SpaceD 창업자 겸 CEO">
@@ -1062,7 +1111,7 @@
                 <section class="member-fact">
                   <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                   <ul data-lang="en">
-                    <li>Professor, Seoul National University, 1986–2011</li>
+                    <li>Professor, Seoul National University, 1986-2011</li>
                     <li>Former President, Korea Aerospace Research Institute</li>
                     <li>Led Naro-1, KOMPSAT-3/5, STSat-3 and Smart UAV programs</li>
                     <li>AIAA Fellow and Institute of Physics Fellow</li>
@@ -1070,7 +1119,7 @@
                     <li>Regular opinion columnist for the <a href="https://www.joongang.co.kr/series/11800" target="_blank" rel="noopener">JoongAng Ilbo</a></li>
                   </ul>
                   <ul data-lang="ko">
-                    <li>서울대학교 항공우주공학과 교수, 1986–2011</li>
+                    <li>서울대학교 항공우주공학과 교수, 1986-2011</li>
                     <li>한국항공우주연구원 원장 역임</li>
                     <li>나로호, 아리랑 3·5호, 과학기술위성 3호 및 스마트 무인기 사업 주도</li>
                     <li>미국항공우주학회 및 영국물리학회 석학회원</li>
@@ -1080,11 +1129,262 @@
                 </section>
               </div>
               <div class="member-links">
-                <a class="icon-link wiki-link" href="https://en.wikipedia.org/wiki/Seung_Jo_Kim" target="_blank" rel="noopener" aria-label="Wikipedia — Seung Jo Kim">W</a>
+                <a class="icon-link wiki-link" href="https://en.wikipedia.org/wiki/Seung_Jo_Kim" target="_blank" rel="noopener" aria-label="Wikipedia - Seung Jo Kim">W</a>
                 <a class="icon-link naver-link" data-lang="ko" href="https://m.blog.naver.com/PostList.naver?blogId=spsssjk&amp;tab=1" target="_blank" rel="noopener" aria-label="네이버 블로그">N</a>
               </div>
             </div>
           </article>
+          </div>
+        </div>
+
+        <div class="people-group">
+          <div class="people-group-head">
+            <h3><span data-lang="en">Advisory Board</span><span data-lang="ko">자문단</span></h3>
+            <p data-lang="en">Computational engineering, HPC, and AI infrastructure leaders advising SpaceD's technology direction.</p>
+            <p data-lang="ko">계산공학, 고성능 컴퓨팅과 AI 인프라 전문가들이 SpaceD의 기술 방향을 자문합니다.</p>
+          </div>
+          <div class="member-grid">
+
+            <article class="card member-card">
+              <div class="member-photo">
+                <img src="/member-changsung-lee.jpg" alt="이창성 SpaceD 자문">
+              </div>
+              <div class="member-details">
+                <div class="member-name">
+                  <span data-lang="en">Chang Sung Lee</span>
+                  <span data-lang="ko">이창성</span>
+                </div>
+                <div class="member-title">
+                  <span data-lang="en">Advisor · EVP &amp; Head of Business Development, DAWON Computing</span>
+                  <span data-lang="ko">자문 · ㈜다원컴퓨팅 사업개발팀장(상무)</span>
+                </div>
+                <p class="member-bio" data-lang="en">An IT systems architect and technology strategist who spent 22 years at Samsung Electronics leading very large enterprise systems and next-generation platform innovation. He now heads business strategy and technology vision across AI, HPC, cloud and next-generation computing at DAWON Computing, with a focus on large-scale GPU-based AI infrastructure.</p>
+                <p class="member-bio" data-lang="ko">22년간 삼성전자에서 초대형 엔터프라이즈 시스템과 차세대 IT 플랫폼 혁신을 이끌어 온 IT 시스템 아키텍트이자 기술 전략가입니다. 현재는 ㈜다원컴퓨팅에서 AI, HPC, 클라우드와 차세대 컴퓨팅 분야의 사업 전략과 기술 비전을 총괄하며 대규모 GPU 기반 AI 인프라 사업화를 추진하고 있습니다.</p>
+                <div class="member-facts">
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
+                    <ul data-lang="en">
+                      <li>Ph.D., Aerospace Engineering, Seoul National University - high-performance computing and parallel computing</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>서울대학교 항공우주공학 박사 - 고성능 컴퓨팅, 병렬 컴퓨팅</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
+                    <ul data-lang="en">
+                      <li>EVP &amp; Head of Business Development, DAWON Computing</li>
+                      <li>Business strategy and technology vision for AI, HPC, cloud and next-generation computing</li>
+                      <li>Commercialization of large-scale GPU-based AI infrastructure and generative AI platforms</li>
+                      <li>Samsung Electronics, 22 years</li>
+                      <li>Directed development of Samsung's next-generation global ERP (N-ERP)</li>
+                      <li>Enterprise architecture and delivery of large-scale mission-critical systems</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>㈜다원컴퓨팅 사업개발팀장(상무)</li>
+                      <li>AI·HPC·클라우드·차세대 컴퓨팅 분야 사업 전략 및 기술 비전 총괄</li>
+                      <li>대규모 GPU 기반 AI 인프라 및 생성형 AI 플랫폼 사업화 추진</li>
+                      <li>삼성전자 22년 근무</li>
+                      <li>차세대 글로벌 ERP(N-ERP) 구축 주도</li>
+                      <li>엔터프라이즈 아키텍처 및 대규모 시스템 구축·운영</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact member-fact--wide">
+                    <h3><span data-lang="en">Honors</span><span data-lang="ko">수상</span></h3>
+                    <ul data-lang="en">
+                      <li>Gordon Bell Prize Winner, SC2001 - supercomputing's most prestigious award</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>Gordon Bell Prize 수상, SC2001 - 슈퍼컴퓨팅 분야 최고 권위상</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact member-fact--wide">
+                    <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
+                    <div class="member-tags" data-lang="en">
+                      <span class="member-tag">High-Performance Computing (HPC)</span>
+                      <span class="member-tag">AI infrastructure &amp; GPU computing</span>
+                      <span class="member-tag">Generative AI &amp; AI agents</span>
+                      <span class="member-tag">Parallel &amp; distributed computing</span>
+                      <span class="member-tag">Enterprise architecture</span>
+                      <span class="member-tag">Digital transformation</span>
+                      <span class="member-tag">Cloud &amp; datacenter strategy</span>
+                      <span class="member-tag">Technology strategy &amp; business development</span>
+                      <span class="member-tag">Mission-critical systems design</span>
+                    </div>
+                    <div class="member-tags" data-lang="ko">
+                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
+                      <span class="member-tag">AI 인프라 및 GPU 컴퓨팅</span>
+                      <span class="member-tag">생성형 AI 및 AI 에이전트</span>
+                      <span class="member-tag">병렬·분산 컴퓨팅</span>
+                      <span class="member-tag">엔터프라이즈 아키텍처</span>
+                      <span class="member-tag">디지털 전환</span>
+                      <span class="member-tag">클라우드·데이터센터 전략</span>
+                      <span class="member-tag">기술 전략 및 사업 개발</span>
+                      <span class="member-tag">미션 크리티컬 시스템 설계</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </article>
+
+
+            <article class="card member-card">
+              <div class="member-photo">
+                <img src="/member-jinwoo-park.jpg" alt="박진우 SpaceD 자문">
+              </div>
+              <div class="member-details">
+                <div class="member-name">
+                  <span data-lang="en">Jin Woo Park</span>
+                  <span data-lang="ko">박진우</span>
+                </div>
+                <div class="member-title">
+                  <span data-lang="en">Advisor · Executive Research Engineer, MIDAS IT</span>
+                  <span data-lang="ko">자문 · ㈜마이다스아이티 연구위원</span>
+                </div>
+                <p class="member-bio" data-lang="en">A computational engineering specialist whose career runs from aerospace structural analysis through distributed computing to AI infrastructure. He led development of three commercial finite element solvers and now directs advanced research in Graph-RAG and agentic AI systems. An amateur astrophotographer, he has had images selected as AstroBin's Image of the Day.</p>
+                <p class="member-bio" data-lang="ko">항공우주 구조해석에서 출발해 분산 컴퓨팅과 AI 인프라로 연구 영역을 넓혀 온 계산공학 전문가입니다. 세 개 상용 유한요소해석 solver 개발을 주도했으며, 현재는 Graph-RAG와 Agentic AI 시스템의 선행 기술 개발을 이끌고 있습니다. 아마추어 천체사진가로서 촬영한 이미지가 AstroBin의 Image of the Day에 선정된 바 있습니다.</p>
+                <div class="member-facts">
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
+                    <ul data-lang="en">
+                      <li>Ph.D., Aerospace Engineering, Seoul National University - aerospace structures and high-performance computing</li>
+                      <li>B.S. and M.S., Aerospace Engineering, Seoul National University</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>서울대학교 항공우주공학 박사 - 항공우주 구조, 고성능 컴퓨팅</li>
+                      <li>서울대학교 항공우주공학 학사·석사</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
+                    <ul data-lang="en">
+                      <li>Executive Research Engineer, MIDAS IT, 2008-present</li>
+                      <li>Chief developer of the midas MeshFree, midas NFX and midas GTS NX solvers</li>
+                      <li>Core engine design and context engineering for knowledge-graph-based agentic systems</li>
+                      <li>Associate Research Engineer, University of Dayton Research Institute, 2005-2008</li>
+                      <li>Post-doctoral Fellow, Seoul National University, 2003-2005</li>
+                      <li>More than 25 papers in Korean and international journals and conferences</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>㈜마이다스아이티 연구위원, 2008-현재</li>
+                      <li>midas MeshFree·midas NFX·midas GTS NX 유한요소해석 solver 개발 총괄</li>
+                      <li>지식그래프 기반 Agentic 시스템 core engine 설계 및 context engineering</li>
+                      <li>미국 University of Dayton Research Institute 연구원, 2005-2008</li>
+                      <li>서울대학교 박사후연구원, 2003-2005</li>
+                      <li>국내외 학술지·학회에 25편 이상의 논문 발표</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact member-fact--wide">
+                    <h3><span data-lang="en">Honors</span><span data-lang="ko">수상</span></h3>
+                    <ul data-lang="en">
+                      <li>Gordon Bell Prize Finalist, SC2004 - supercomputing's most prestigious award</li>
+                      <li>Top 10 Mechanical Technologies of the Year, Korea - midas MeshFree (2017)</li>
+                      <li>Ministerial Commendation for Contribution to the Software Industry (2015)</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>Gordon Bell Prize Finalist, SC2004 - 슈퍼컴퓨팅 분야 최고 권위상</li>
+                      <li>올해의 10대 기계기술 선정 - midas MeshFree (2017)</li>
+                      <li>소프트웨어산업 발전 유공 장관표창 (2015)</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact member-fact--wide">
+                    <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
+                    <div class="member-tags" data-lang="en">
+                      <span class="member-tag">High-Performance Computing (HPC)</span>
+                      <span class="member-tag">Parallel &amp; distributed computing</span>
+                      <span class="member-tag">Aerospace &amp; composite structural analysis</span>
+                      <span class="member-tag">Simulation-based design optimization</span>
+                      <span class="member-tag">Generative AI &amp; agentic systems</span>
+                      <span class="member-tag">Graph-RAG &amp; knowledge graphs</span>
+                      <span class="member-tag">Numerical analysis &amp; FEM</span>
+                      <span class="member-tag">Engineering software architecture</span>
+                    </div>
+                    <div class="member-tags" data-lang="ko">
+                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
+                      <span class="member-tag">병렬·분산 컴퓨팅</span>
+                      <span class="member-tag">항공우주·복합재 구조해석</span>
+                      <span class="member-tag">시뮬레이션 기반 최적설계</span>
+                      <span class="member-tag">Generative AI &amp; Agentic System</span>
+                      <span class="member-tag">Graph-RAG 및 지식그래프</span>
+                      <span class="member-tag">수치해석 및 유한요소법(FEM)</span>
+                      <span class="member-tag">엔지니어링 소프트웨어 아키텍처</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </article>
+
+            <article class="card member-card">
+              <div class="member-photo">
+                <img src="/member-sihyong-park.jpg" alt="박시형 SpaceD 자문">
+              </div>
+              <div class="member-details">
+                <div class="member-name">
+                  <span data-lang="en">Si Hyong Park</span>
+                  <span data-lang="ko">박시형</span>
+                </div>
+                <div class="member-title">
+                  <span data-lang="en">Advisor · CAE Software R&amp;D, MIDAS IT</span>
+                  <span data-lang="ko">자문 · ㈜마이다스아이티 CAE 소프트웨어 연구개발</span>
+                </div>
+                <p class="member-bio" data-lang="en">A CAE software and finite element method specialist with more than 20 years of research and development experience. He played a leading role in the midasFEA and midas NFX platforms and has led R&amp;D organizations across structural analysis, CFD, optimization and fluid-structure interaction. He now works on Engineering AX and RAG-based engineering knowledge systems.</p>
+                <p class="member-bio" data-lang="ko">20년 이상 CAE 소프트웨어와 유한요소해석(FEM) 분야에서 연구개발을 수행한 기술 전문가입니다. midasFEA, midasNFX 등 핵심 CAE 플랫폼 개발을 주도했고 구조·유동·최적화·다물리 연성(FSI) 연구개발 조직을 이끌었습니다. 최근에는 엔지니어링 AX와 설계지침 기반 RAG 시스템으로 전문 영역을 넓히고 있습니다.</p>
+                <div class="member-facts">
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
+                    <ul data-lang="en">
+                      <li>Ph.D., Aerospace Engineering, Seoul National University, 1998-2003 - finite element error estimation and adaptive mesh generation</li>
+                      <li>B.S. and M.S., Aerospace Engineering, Seoul National University</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>서울대학교 항공우주공학 박사, 1998-2003 - 유한요소법 오차추정 및 적응격자 연구</li>
+                      <li>서울대학교 항공우주공학 학사·석사</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact">
+                    <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
+                    <ul data-lang="en">
+                      <li>MIDAS IT, 2023-present - advanced simulation (FSI) and Engineering AX development</li>
+                      <li>MIDAS IN, 2020-2022 - data analytics and AI-based talent matching platform</li>
+                      <li>MIDAS IT, 2006-2019 - product development leadership and R&amp;D management for structural, CFD and optimization technologies</li>
+                      <li>Development of midas NFX, Nastran-FX and midas Building</li>
+                    </ul>
+                    <ul data-lang="ko">
+                      <li>㈜마이다스아이티, 2023-현재 - 특수해석(FSI) 및 엔지니어링 AX 개발</li>
+                      <li>㈜마이다스인, 2020-2022 - 데이터 분석 및 채용매칭 시스템 개발</li>
+                      <li>㈜마이다스아이티, 2006-2019 - 제품개발 총괄, 구조·유동·최적화 연구개발 총괄</li>
+                      <li>midasNFX, Nastran-FX 및 midas Building 개발</li>
+                    </ul>
+                  </section>
+                  <section class="member-fact member-fact--wide">
+                    <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
+                    <div class="member-tags" data-lang="en">
+                      <span class="member-tag">Finite element analysis (FEM)</span>
+                      <span class="member-tag">Numerical algorithms</span>
+                      <span class="member-tag">CAE software architecture</span>
+                      <span class="member-tag">Structural analysis, CFD &amp; optimization</span>
+                      <span class="member-tag">Fluid-structure interaction (FSI)</span>
+                      <span class="member-tag">High Performance Computing (HPC)</span>
+                      <span class="member-tag">Parallel computing &amp; GPU acceleration</span>
+                      <span class="member-tag">Engineering AI/AX</span>
+                      <span class="member-tag">RAG-based knowledge systems</span>
+                    </div>
+                    <div class="member-tags" data-lang="ko">
+                      <span class="member-tag">유한요소해석(FEM)</span>
+                      <span class="member-tag">수치해석 알고리즘</span>
+                      <span class="member-tag">CAE 소프트웨어 아키텍처</span>
+                      <span class="member-tag">구조·유동해석 및 최적설계</span>
+                      <span class="member-tag">다물리 연성(FSI)</span>
+                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
+                      <span class="member-tag">병렬해석 및 GPU 가속화</span>
+                      <span class="member-tag">공학용 AI/AX</span>
+                      <span class="member-tag">RAG 기반 엔지니어링 지식시스템</span>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1138,8 +1438,12 @@
     const routeLinks = Array.from(document.querySelectorAll("a[href^='#']"));
     const introVideo = document.querySelector(".video-card video");
 
+    // legacy hashes kept working after a section was renamed
+    const routeAliases = { members: "people" };
+
     function showRoute(route, updateHash = true) {
-      const nextRoute = routes.has(route) ? route : "top";
+      const resolved = routeAliases[route] || route;
+      const nextRoute = routes.has(resolved) ? resolved : "top";
 
       document.querySelectorAll("main > section[id]").forEach((section) => {
         section.classList.toggle("is-active", section.id === nextRoute);
@@ -1170,7 +1474,7 @@
     routeLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
         const route = link.getAttribute("href").slice(1);
-        if (!routes.has(route)) return;
+        if (!routes.has(routeAliases[route] || route)) return;
         event.preventDefault();
         showRoute(route);
       });
