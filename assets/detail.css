@@ -30,6 +30,9 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       line-height: 1.5;
+      /* 한글/영문 모두 단어 중간에서 줄바꿈되지 않도록 (띄어쓰기 단위로만 개행) */
+      word-break: keep-all;
+      overflow-wrap: normal;
     }
 
     body::before {
@@ -563,6 +566,9 @@
     .footer-yt { display: inline-flex; align-items: center; flex: none; transition: transform .15s ease, opacity .15s ease; }
     .footer-yt:hover { transform: translateY(-1px); opacity: .85; }
     .footer-yt svg { display: block; width: 30px; height: auto; }
+
+    /* 하이픈·가운뎃점이 들어간 고유명사/서비스명은 그 자리에서 잘리지 않게 한 덩어리로 */
+    .nb { white-space: nowrap; }
 
     /* language display */
     html[lang="en"] [data-lang="ko"] { display: none !important; }

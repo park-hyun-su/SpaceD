@@ -37,6 +37,9 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       line-height: 1.5;
+      /* 한글/영문 모두 단어 중간에서 줄바꿈되지 않도록 (띄어쓰기 단위로만 개행) */
+      word-break: keep-all;
+      overflow-wrap: normal;
     }
 
     body::before {
@@ -701,18 +704,28 @@
     .footer-yt:hover { transform: translateY(-1px); opacity: .85; }
     .footer-yt svg { display: block; width: 30px; height: auto; }
 
+    /* 하이픈·가운뎃점이 들어간 고유명사/서비스명은 그 자리에서 잘리지 않게 한 덩어리로 */
+    .nb { white-space: nowrap; }
+
     /* language display */
     html[lang="en"] [data-lang="ko"] { display: none !important; }
     html[lang="ko"] [data-lang="en"] { display: none !important; }
 
     /* responsive */
+    @media (max-width: 1200px) {
+      /* 2단으로 두면 한 칸이 240px까지 좁아져 한글 항목이 가운뎃점·괄호에서 끊긴다 */
+      .member-facts { grid-template-columns: 1fr; }
+    }
     @media (max-width: 980px) {
       .header-inner { grid-template-columns: 1fr auto; }
       nav { grid-column: 1 / -1; order: 3; justify-content: flex-start; padding-bottom: 14px; }
       .hero-grid { grid-template-columns: 1fr; gap: 34px; }
       .section-head { grid-template-columns: 1fr; gap: 18px; align-items: start; }
       .grid, .grid.three, .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .member-card { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); }
+      /* 사진 열이 340px로 고정되면 프로필 본문 열이 100px대로 찌그러져
+         한글이 한 글자 단위로 끊긴다. 태블릿 이하에서는 위아래로 쌓는다. */
+      .member-card { grid-template-columns: 1fr; }
+      .member-photo { max-width: 340px; }
       .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .orbit-map, .split { grid-template-columns: 1fr; }
     }
@@ -778,7 +791,7 @@
               <span data-lang="ko">전력. 연산. 연결. <span class="accent">궤도에서.</span></span>
             </h1>
             <p class="lead">
-              <span data-lang="en">SpaceD redefines satellites from single-purpose machines into orbital datacenters. On the SDDS architecture we combine SDR, AESA, Agentic AI, and secure computing to turn communications, sensing, navigation, and edge AI into software-defined services.</span>
+              <span data-lang="en">SpaceD redefines satellites from <span class="nb">single-purpose</span> machines into orbital datacenters. On the SDDS architecture we combine SDR, AESA, Agentic AI, and secure computing to turn communications, sensing, navigation, and edge AI into <span class="nb">software-defined</span> services.</span>
               <span data-lang="ko">SpaceD는 위성을 단일 목적 장비에서 궤도 데이터센터로 재정의합니다. SDDS 아키텍처 위에 SDR, AESA, Agentic AI와 보안 컴퓨팅을 결합해 통신, 센싱, 항법과 엣지 AI를 소프트웨어 정의 서비스로 전환합니다.</span>
             </p>
             <div class="actions">
@@ -799,8 +812,8 @@
         <div class="strip">
           <div>
             <b>SDDS</b>
-            <p data-lang="en">The core paradigm — GPU/NPU-powered datacenter satellites in orbit.</p>
-            <p data-lang="ko">GPU/NPU 기반 궤도 데이터센터 위성의 핵심 패러다임.</p>
+            <p data-lang="en">The core paradigm — <span class="nb">GPU/NPU-powered</span> datacenter satellites in orbit.</p>
+            <p data-lang="ko"><span class="nb">GPU/NPU</span> 기반 궤도 데이터센터 위성의 핵심 패러다임.</p>
           </div>
           <div>
             <b>SDR</b>
@@ -809,7 +822,7 @@
           </div>
           <div>
             <b>AESA</b>
-            <p data-lang="en">A multi-beam antenna layer for parallel comms, sensing, and relay.</p>
+            <p data-lang="en">A <span class="nb">multi-beam</span> antenna layer for parallel comms, sensing, and relay.</p>
             <p data-lang="ko">통신, 센싱과 중계를 병렬 수행하는 다중 빔 안테나 계층.</p>
           </div>
           <div>
@@ -829,16 +842,16 @@
             <span data-lang="en">Why data infrastructure moves to space</span>
             <span data-lang="ko">데이터 인프라는 왜 우주로 이동하는가</span>
           </h2>
-          <p data-lang="en">Like Starcloud's orbital-datacenter story and Cowboy Space's power-and-compute framing, SpaceD solves terrestrial bottlenecks by making space assets software-defined - power, thermal, communications, and sensing bound into one service layer.</p>
+          <p data-lang="en">Like Starcloud's <span class="nb">orbital-datacenter</span> story and Cowboy Space's <span class="nb">power-and-compute</span> framing, SpaceD solves terrestrial bottlenecks by making space assets <span class="nb">software-defined</span> - power, thermal, communications, and sensing bound into one service layer.</p>
           <p data-lang="ko">SpaceD는 우주 자산을 소프트웨어 정의 방식으로 전환해 지상 인프라의 병목을 해결합니다. 전력, 열관리, 통신과 센싱을 하나의 서비스 계층으로 통합합니다.</p>
         </div>
         <div class="grid">
           <article class="card hl">
             <span class="tag">01</span>
-            <strong data-lang="en">Orbit-native compute</strong>
+            <strong data-lang="en"><span class="nb">Orbit-native</span> compute</strong>
             <strong data-lang="ko">궤도 기반 컴퓨팅</strong>
-            <p data-lang="en">Process raw data onboard with satellite GPUs/NPUs before downlink, cutting latency and bandwidth pressure.</p>
-            <p data-lang="ko">원시 데이터를 지상으로 모두 전송하기 전에 위성의 GPU/NPU에서 처리해 지연시간과 대역폭 부담을 줄입니다.</p>
+            <p data-lang="en">Process raw data onboard with satellite <span class="nb">GPUs/NPUs</span> before downlink, cutting latency and bandwidth pressure.</p>
+            <p data-lang="ko">원시 데이터를 지상으로 모두 전송하기 전에 위성의 <span class="nb">GPU/NPU</span>에서 처리해 지연시간과 대역폭 부담을 줄입니다.</p>
           </article>
           <article class="card">
             <span class="tag">02</span>
@@ -858,7 +871,7 @@
             <span class="tag">04</span>
             <strong data-lang="en">Commercial repeatability</strong>
             <strong data-lang="ko">반복 가능한 사업 모델</strong>
-            <p data-lang="en">Move from one-off projects to repeatable revenue via APIs, subscriptions, and mission billing.</p>
+            <p data-lang="en">Move from <span class="nb">one-off</span> projects to repeatable revenue via APIs, subscriptions, and mission billing.</p>
             <p data-lang="ko">일회성 프로젝트에서 벗어나 API, 구독과 임무 단위 과금으로 반복 매출 구조를 만듭니다.</p>
           </article>
         </div>
@@ -873,7 +886,7 @@
             <span data-lang="en">Our technology stack</span>
             <span data-lang="ko">핵심 기술 스택</span>
           </h2>
-          <p data-lang="en">SpaceD places SDDS as the top-level architecture, SDR and AESA as mission-switching interfaces, and Agentic AI plus secure computing as the foundation for real-time decisions and trust.</p>
+          <p data-lang="en">SpaceD places SDDS as the <span class="nb">top-level</span> architecture, SDR and AESA as <span class="nb">mission-switching</span> interfaces, and Agentic AI plus secure computing as the foundation for <span class="nb">real-time</span> decisions and trust.</p>
           <p data-lang="ko">SpaceD는 SDDS를 최상위 아키텍처로, SDR과 AESA를 임무 전환 인터페이스로, Agentic AI와 보안 컴퓨팅을 실시간 의사결정과 신뢰의 기반으로 구성합니다.</p>
         </div>
         <div class="grid three">
@@ -881,8 +894,8 @@
             <span class="tag" data-lang="en">Core paradigm</span>
             <span class="tag" data-lang="ko">핵심 패러다임</span>
             <strong>SDDS</strong>
-            <p data-lang="en">Software-Defined Datacenter Satellite. High-performance compute and virtualization turn the satellite into an orbital server.</p>
-            <p data-lang="ko">Software-Defined Datacenter Satellite. 고성능 컴퓨팅과 가상화로 위성을 궤도 서버로 전환합니다.</p>
+            <p data-lang="en"><span class="nb">Software-Defined</span> Datacenter Satellite. <span class="nb">High-performance</span> compute and virtualization turn the satellite into an orbital server.</p>
+            <p data-lang="ko"><span class="nb">Software-Defined</span> Datacenter Satellite. 고성능 컴퓨팅과 가상화로 위성을 궤도 서버로 전환합니다.</p>
           </article>
           <article class="card">
             <span class="tag" data-lang="en">Flexible radio</span>
@@ -892,7 +905,7 @@
             <p data-lang="ko">경직된 RF 하드웨어 의존도를 줄이고 임무 수요에 따라 대역, 변조와 프로토콜을 전환합니다.</p>
           </article>
           <article class="card">
-            <span class="tag" data-lang="en">Multi-beam</span>
+            <span class="tag" data-lang="en"><span class="nb">Multi-beam</span></span>
             <span class="tag" data-lang="ko">다중 빔</span>
             <strong>AESA</strong>
             <p data-lang="en">Electronic steering and digital beamforming deliver comms, SAR, and relay across regions at once.</p>
@@ -910,7 +923,7 @@
             <span class="tag" data-lang="ko">신뢰성</span>
             <strong data-lang="en">Radiation Protection</strong>
             <strong data-lang="ko">방사선 보호</strong>
-            <p data-lang="en">Protect electronics, compute modules, and payloads for reliable operation in radiation-heavy orbits.</p>
+            <p data-lang="en">Protect electronics, compute modules, and payloads for reliable operation in <span class="nb">radiation-heavy</span> orbits.</p>
             <p data-lang="ko">방사선 환경에서도 전자부품, 컴퓨팅 모듈과 페이로드가 안정적으로 작동하도록 보호합니다.</p>
           </article>
           <article class="card">
@@ -918,7 +931,7 @@
             <span class="tag" data-lang="ko">신뢰</span>
             <strong data-lang="en">Security</strong>
             <strong data-lang="ko">보안</strong>
-            <p data-lang="en">Encrypted links, access control, anti-jamming, and data protection built into the service.</p>
+            <p data-lang="en">Encrypted links, access control, <span class="nb">anti-jamming</span>, and data protection built into the service.</p>
             <p data-lang="ko">암호화 링크, 접근 제어, 대재밍과 데이터 보호를 서비스의 기본 계층으로 포함합니다.</p>
           </article>
         </div>
@@ -942,7 +955,7 @@
             <div class="ring two"></div>
             <div class="core">SDDS<small data-lang="en">Orbital Datacenter</small><small data-lang="ko">궤도 데이터센터</small></div>
             <div class="node sdr">SDR<small data-lang="en">Waveforms</small><small data-lang="ko">파형</small></div>
-            <div class="node aesa">AESA<small data-lang="en">Multi-beam</small><small data-lang="ko">다중 빔</small></div>
+            <div class="node aesa">AESA<small data-lang="en"><span class="nb">Multi-beam</span></small><small data-lang="ko">다중 빔</small></div>
             <div class="node ai">Agentic AI<small data-lang="en">Edge decisions</small><small data-lang="ko">엣지 의사결정</small></div>
             <div class="node security">Security<small data-lang="en">Trusted service</small><small data-lang="ko">신뢰할 수 있는 서비스</small></div>
           </div>
@@ -950,13 +963,13 @@
             <article class="stack-card">
               <strong data-lang="en">1. Universal hardware</strong>
               <strong data-lang="ko">1. 범용 하드웨어</strong>
-              <p data-lang="en">The spacecraft becomes a platform; onboard compute and RF/AESA process multiple missions at once.</p>
-              <p data-lang="ko">위성체는 플랫폼이 되고, 탑재 컴퓨팅과 RF/AESA 계층이 여러 임무를 동시에 처리합니다.</p>
+              <p data-lang="en">The spacecraft becomes a platform; onboard compute and <span class="nb">RF/AESA</span> process multiple missions at once.</p>
+              <p data-lang="ko">위성체는 플랫폼이 되고, 탑재 컴퓨팅과 <span class="nb">RF/AESA</span> 계층이 여러 임무를 동시에 처리합니다.</p>
             </article>
             <article class="stack-card">
-              <strong data-lang="en">2. Software-defined missions</strong>
+              <strong data-lang="en">2. <span class="nb">Software-defined</span> missions</strong>
               <strong data-lang="ko">2. 소프트웨어 정의 임무</strong>
-              <p data-lang="en">Missions aren't fixed before launch; on-orbit updates switch between comms, sensing, navigation, and AI.</p>
+              <p data-lang="en">Missions aren't fixed before launch; <span class="nb">on-orbit</span> updates switch between comms, sensing, navigation, and AI.</p>
               <p data-lang="ko">임무는 발사 전에 고정되지 않습니다. 궤도 업데이트를 통해 통신, 센싱, 항법과 AI 사이를 전환합니다.</p>
             </article>
             <article class="stack-card">
@@ -990,25 +1003,25 @@
         <div class="grid">
           <article class="card">
             <span class="tag">01</span>
-            <strong>Data-as-a-Service</strong>
+            <strong class="nb">Data-as-a-Service</strong>
             <p data-lang="en">Preprocess SAR, optical, and RF data with onboard AI to deliver change detection and analysis.</p>
             <p data-lang="ko">SAR, 광학과 RF 데이터를 탑재 AI로 전처리해 변화 탐지와 분석 결과를 제공합니다.</p>
           </article>
           <article class="card">
             <span class="tag">02</span>
-            <strong>Connectivity-as-a-Service</strong>
-            <p data-lang="en">DTC, broadband, tactical comms, and inter-satellite links as configurable connectivity.</p>
+            <strong class="nb">Connectivity-as-a-Service</strong>
+            <p data-lang="en">DTC, broadband, tactical comms, and <span class="nb">inter-satellite</span> links as configurable connectivity.</p>
             <p data-lang="ko">DTC, 광대역, 전술 통신과 위성 간 링크를 필요에 따라 구성 가능한 연결성으로 제공합니다.</p>
           </article>
           <article class="card">
             <span class="tag">03</span>
-            <strong>Compute-as-a-Service</strong>
-            <p data-lang="en">Allocate orbital GPU/NPU to edge AI, mission automation, and data compression/analytics.</p>
-            <p data-lang="ko">궤도 GPU/NPU 자원을 엣지 AI, 임무 자동화와 데이터 압축·분석 작업에 배정합니다.</p>
+            <strong class="nb">Compute-as-a-Service</strong>
+            <p data-lang="en">Allocate orbital <span class="nb">GPU/NPU</span> to edge AI, mission automation, and data <span class="nb">compression/analytics</span>.</p>
+            <p data-lang="ko">궤도 <span class="nb">GPU/NPU</span> 자원을 엣지 AI, 임무 자동화와 데이터 <span class="nb">압축·분석</span> 작업에 배정합니다.</p>
           </article>
           <article class="card">
             <span class="tag">04</span>
-            <strong>PNT-as-a-Service</strong>
+            <strong class="nb">PNT-as-a-Service</strong>
             <p data-lang="en">Augment positioning, navigation, and timing for autonomy, drones, and defense with LEO signals.</p>
             <p data-lang="ko">저궤도 신호로 자율 시스템, 드론과 국방 운용을 위한 위치, 항법과 시각 정보를 보강합니다.</p>
           </article>
@@ -1053,7 +1066,7 @@
             <span class="tag" data-lang="en">Killer service</span>
             <span class="tag" data-lang="ko">핵심 서비스</span>
             <strong>Secure routing</strong>
-            <p data-lang="en">Combine encrypted routing with anti-jamming to raise resilience for mission-critical comms.</p>
+            <p data-lang="en">Combine encrypted routing with <span class="nb">anti-jamming</span> to raise resilience for <span class="nb">mission-critical</span> comms.</p>
             <p data-lang="ko">암호화 라우팅과 대재밍 기술을 결합해 임무 핵심 통신의 회복탄력성과 신뢰성을 높입니다.</p>
           </article>
         </div>
@@ -1068,7 +1081,7 @@
             <span data-lang="en">People</span>
             <span data-lang="ko">구성원</span>
           </h2>
-          <p data-lang="en">Meet the leadership and advisors building SpaceD's software-defined orbital infrastructure.</p>
+          <p data-lang="en">Meet the leadership and advisors building SpaceD's <span class="nb">software-defined</span> orbital infrastructure.</p>
           <p data-lang="ko">SpaceD의 소프트웨어 정의 궤도 인프라를 만들어 가는 리더십과 자문단을 소개합니다.</p>
         </div>
 
@@ -1090,7 +1103,7 @@
               </div>
               <div class="member-title">
                 <span data-lang="en">Founder &amp; CEO · Professor Emeritus, Seoul National University</span>
-                <span data-lang="ko">창업자·CEO · 서울대학교 명예교수</span>
+                <span data-lang="ko"><span class="nb">창업자·CEO</span> · 서울대학교 명예교수</span>
               </div>
               <p class="member-bio" data-lang="en">A South Korean aerospace engineer whose work spans structural analysis, satellite systems and national space programs. He served as president of the Korea Aerospace Research Institute and founded SpaceD in November 2024.</p>
               <p class="member-bio" data-lang="ko">구조해석, 위성 시스템과 국가 우주개발 사업을 이끌어 온 대한민국의 항공우주공학자입니다. 한국항공우주연구원 원장을 역임했으며 2024년 11월 SpaceD를 창업했습니다.</p>
@@ -1111,19 +1124,19 @@
                 <section class="member-fact">
                   <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                   <ul data-lang="en">
-                    <li>Professor, Seoul National University, 1986-2011</li>
+                    <li>Professor, Seoul National University, <span class="nb">1986-2011</span></li>
                     <li>Former President, Korea Aerospace Research Institute</li>
-                    <li>Led Naro-1, KOMPSAT-3/5, STSat-3 and Smart UAV programs</li>
+                    <li>Led <span class="nb">Naro-1</span>, <span class="nb">KOMPSAT-3/5</span>, <span class="nb">STSat-3</span> and Smart UAV programs</li>
                     <li>AIAA Fellow and Institute of Physics Fellow</li>
                     <li>Author of <em>Disruptive Innovation in Space Technology</em> and <em>Disruptive Innovation of Urban Air Mobility (UAM)</em></li>
                     <li>Regular opinion columnist for the <a href="https://www.joongang.co.kr/series/11800" target="_blank" rel="noopener">JoongAng Ilbo</a></li>
                   </ul>
                   <ul data-lang="ko">
-                    <li>서울대학교 항공우주공학과 교수, 1986-2011</li>
+                    <li>서울대학교 항공우주공학과 교수, <span class="nb">1986-2011</span></li>
                     <li>한국항공우주연구원 원장 역임</li>
-                    <li>나로호, 아리랑 3·5호, 과학기술위성 3호 및 스마트 무인기 사업 주도</li>
+                    <li>나로호, 아리랑 <span class="nb">3·5호</span>, 과학기술위성 3호 및 스마트 무인기 사업 주도</li>
                     <li>미국항공우주학회 및 영국물리학회 석학회원</li>
-                    <li>『우주기술의 파괴적 혁신』, 『파괴적 혁신의 도심항공교통(UAM)』 집필</li>
+                    <li>『우주기술의 파괴적 혁신』, 『파괴적 혁신의 <span class="nb">도심항공교통(UAM)</span>』 집필</li>
                     <li><a href="https://www.joongang.co.kr/series/11800" target="_blank" rel="noopener">중앙일보</a> 오피니언 정기 기고</li>
                   </ul>
                 </section>
@@ -1156,15 +1169,15 @@
                 </div>
                 <div class="member-title">
                   <span data-lang="en">Advisor · EVP &amp; Head of Business Development, DAWON Computing</span>
-                  <span data-lang="ko">자문 · ㈜다원컴퓨팅 사업개발팀장(상무)</span>
+                  <span data-lang="ko">자문 · <span class="nb">㈜다원컴퓨팅</span> <span class="nb">사업개발팀장(상무)</span></span>
                 </div>
-                <p class="member-bio" data-lang="en">An IT systems architect and technology strategist who spent 22 years at Samsung Electronics leading very large enterprise systems and next-generation platform innovation. He now heads business strategy and technology vision across AI, HPC, cloud and next-generation computing at DAWON Computing, with a focus on large-scale GPU-based AI infrastructure.</p>
-                <p class="member-bio" data-lang="ko">22년간 삼성전자에서 초대형 엔터프라이즈 시스템과 차세대 IT 플랫폼 혁신을 이끌어 온 IT 시스템 아키텍트이자 기술 전략가입니다. 현재는 ㈜다원컴퓨팅에서 AI, HPC, 클라우드와 차세대 컴퓨팅 분야의 사업 전략과 기술 비전을 총괄하며 대규모 GPU 기반 AI 인프라 사업화를 추진하고 있습니다.</p>
+                <p class="member-bio" data-lang="en">An IT systems architect and technology strategist who spent 22 years at Samsung Electronics leading very large enterprise systems and <span class="nb">next-generation</span> platform innovation. He now heads business strategy and technology vision across AI, HPC, cloud and <span class="nb">next-generation</span> computing at DAWON Computing, with a focus on <span class="nb">large-scale</span> <span class="nb">GPU-based</span> AI infrastructure.</p>
+                <p class="member-bio" data-lang="ko">22년간 삼성전자에서 초대형 엔터프라이즈 시스템과 차세대 IT 플랫폼 혁신을 이끌어 온 IT 시스템 아키텍트이자 기술 전략가입니다. 현재는 <span class="nb">㈜다원컴퓨팅에서</span> AI, HPC, 클라우드와 차세대 컴퓨팅 분야의 사업 전략과 기술 비전을 총괄하며 대규모 GPU 기반 AI 인프라 사업화를 추진하고 있습니다.</p>
                 <div class="member-facts">
                   <section class="member-fact">
                     <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
                     <ul data-lang="en">
-                      <li>Ph.D., Aerospace Engineering, Seoul National University - high-performance computing and parallel computing</li>
+                      <li>Ph.D., Aerospace Engineering, Seoul National University - <span class="nb">high-performance</span> computing and parallel computing</li>
                     </ul>
                     <ul data-lang="ko">
                       <li>서울대학교 항공우주공학 박사 - 고성능 컴퓨팅, 병렬 컴퓨팅</li>
@@ -1174,19 +1187,19 @@
                     <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                     <ul data-lang="en">
                       <li>EVP &amp; Head of Business Development, DAWON Computing</li>
-                      <li>Business strategy and technology vision for AI, HPC, cloud and next-generation computing</li>
-                      <li>Commercialization of large-scale GPU-based AI infrastructure and generative AI platforms</li>
+                      <li>Business strategy and technology vision for AI, HPC, cloud and <span class="nb">next-generation</span> computing</li>
+                      <li>Commercialization of <span class="nb">large-scale</span> <span class="nb">GPU-based</span> AI infrastructure and generative AI platforms</li>
                       <li>Samsung Electronics, 22 years</li>
-                      <li>Directed development of Samsung's next-generation global ERP (N-ERP)</li>
-                      <li>Enterprise architecture and delivery of large-scale mission-critical systems</li>
+                      <li>Directed development of Samsung's <span class="nb">next-generation</span> global ERP (<span class="nb">N-ERP</span>)</li>
+                      <li>Enterprise architecture and delivery of <span class="nb">large-scale</span> <span class="nb">mission-critical</span> systems</li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>㈜다원컴퓨팅 사업개발팀장(상무)</li>
-                      <li>AI·HPC·클라우드·차세대 컴퓨팅 분야 사업 전략 및 기술 비전 총괄</li>
+                      <li><span class="nb">㈜다원컴퓨팅</span> <span class="nb">사업개발팀장(상무)</span></li>
+                      <li><span class="nb">AI·HPC·클라우드·차세대</span> 컴퓨팅 분야 사업 전략 및 기술 비전 총괄</li>
                       <li>대규모 GPU 기반 AI 인프라 및 생성형 AI 플랫폼 사업화 추진</li>
                       <li>삼성전자 22년 근무</li>
-                      <li>차세대 글로벌 ERP(N-ERP) 구축 주도</li>
-                      <li>엔터프라이즈 아키텍처 및 대규모 시스템 구축·운영</li>
+                      <li>차세대 글로벌 ERP(<span class="nb">N-ERP</span>) 구축 주도</li>
+                      <li>엔터프라이즈 아키텍처 및 대규모 시스템 <span class="nb">구축·운영</span></li>
                     </ul>
                   </section>
                   <section class="member-fact member-fact--wide">
@@ -1201,7 +1214,7 @@
                   <section class="member-fact member-fact--wide">
                     <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
                     <div class="member-tags" data-lang="en">
-                      <span class="member-tag">High-Performance Computing (HPC)</span>
+                      <span class="member-tag"><span class="nb">High-Performance</span> Computing (HPC)</span>
                       <span class="member-tag">AI infrastructure &amp; GPU computing</span>
                       <span class="member-tag">Generative AI &amp; AI agents</span>
                       <span class="member-tag">Parallel &amp; distributed computing</span>
@@ -1209,16 +1222,16 @@
                       <span class="member-tag">Digital transformation</span>
                       <span class="member-tag">Cloud &amp; datacenter strategy</span>
                       <span class="member-tag">Technology strategy &amp; business development</span>
-                      <span class="member-tag">Mission-critical systems design</span>
+                      <span class="member-tag"><span class="nb">Mission-critical</span> systems design</span>
                     </div>
                     <div class="member-tags" data-lang="ko">
-                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
+                      <span class="member-tag">고성능 <span class="nb">컴퓨팅(HPC)</span></span>
                       <span class="member-tag">AI 인프라 및 GPU 컴퓨팅</span>
                       <span class="member-tag">생성형 AI 및 AI 에이전트</span>
-                      <span class="member-tag">병렬·분산 컴퓨팅</span>
+                      <span class="member-tag"><span class="nb">병렬·분산</span> 컴퓨팅</span>
                       <span class="member-tag">엔터프라이즈 아키텍처</span>
                       <span class="member-tag">디지털 전환</span>
-                      <span class="member-tag">클라우드·데이터센터 전략</span>
+                      <span class="member-tag"><span class="nb">클라우드·데이터센터</span> 전략</span>
                       <span class="member-tag">기술 전략 및 사업 개발</span>
                       <span class="member-tag">미션 크리티컬 시스템 설계</span>
                     </div>
@@ -1239,39 +1252,39 @@
                 </div>
                 <div class="member-title">
                   <span data-lang="en">Advisor · Executive Research Engineer, MIDAS IT</span>
-                  <span data-lang="ko">자문 · ㈜마이다스아이티 연구위원</span>
+                  <span data-lang="ko">자문 · <span class="nb">㈜마이다스아이티</span> 연구위원</span>
                 </div>
-                <p class="member-bio" data-lang="en">A computational engineering specialist whose career runs from aerospace structural analysis through distributed computing to AI infrastructure. He led development of three commercial finite element solvers and now directs advanced research in Graph-RAG and agentic AI systems. An amateur astrophotographer, he has had images selected as AstroBin's Image of the Day.</p>
-                <p class="member-bio" data-lang="ko">항공우주 구조해석에서 출발해 분산 컴퓨팅과 AI 인프라로 연구 영역을 넓혀 온 계산공학 전문가입니다. 세 개 상용 유한요소해석 solver 개발을 주도했으며, 현재는 Graph-RAG와 Agentic AI 시스템의 선행 기술 개발을 이끌고 있습니다. 아마추어 천체사진가로서 촬영한 이미지가 AstroBin의 Image of the Day에 선정된 바 있습니다.</p>
+                <p class="member-bio" data-lang="en">A computational engineering specialist whose career runs from aerospace structural analysis through distributed computing to AI infrastructure. He led development of three commercial finite element solvers and now directs advanced research in <span class="nb">Graph-RAG</span> and agentic AI systems. An amateur astrophotographer, he has had images selected as AstroBin's Image of the Day.</p>
+                <p class="member-bio" data-lang="ko">항공우주 구조해석에서 출발해 분산 컴퓨팅과 AI 인프라로 연구 영역을 넓혀 온 계산공학 전문가입니다. 세 개 상용 유한요소해석 solver 개발을 주도했으며, 현재는 <span class="nb">Graph-RAG와</span> Agentic AI 시스템의 선행 기술 개발을 이끌고 있습니다. 아마추어 천체사진가로서 촬영한 이미지가 AstroBin의 Image of the Day에 선정된 바 있습니다.</p>
                 <div class="member-facts">
                   <section class="member-fact">
                     <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
                     <ul data-lang="en">
-                      <li>Ph.D., Aerospace Engineering, Seoul National University - aerospace structures and high-performance computing</li>
+                      <li>Ph.D., Aerospace Engineering, Seoul National University - aerospace structures and <span class="nb">high-performance</span> computing</li>
                       <li>B.S. and M.S., Aerospace Engineering, Seoul National University</li>
                     </ul>
                     <ul data-lang="ko">
                       <li>서울대학교 항공우주공학 박사 - 항공우주 구조, 고성능 컴퓨팅</li>
-                      <li>서울대학교 항공우주공학 학사·석사</li>
+                      <li>서울대학교 항공우주공학 <span class="nb">학사·석사</span></li>
                     </ul>
                   </section>
                   <section class="member-fact">
                     <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                     <ul data-lang="en">
-                      <li>Executive Research Engineer, MIDAS IT, 2008-present</li>
+                      <li>Executive Research Engineer, MIDAS IT, <span class="nb">2008-present</span></li>
                       <li>Chief developer of the midas MeshFree, midas NFX and midas GTS NX solvers</li>
-                      <li>Core engine design and context engineering for knowledge-graph-based agentic systems</li>
-                      <li>Associate Research Engineer, University of Dayton Research Institute, 2005-2008</li>
-                      <li>Post-doctoral Fellow, Seoul National University, 2003-2005</li>
+                      <li>Core engine design and context engineering for <span class="nb">knowledge-graph-based</span> agentic systems</li>
+                      <li>Associate Research Engineer, University of Dayton Research Institute, <span class="nb">2005-2008</span></li>
+                      <li><span class="nb">Post-doctoral</span> Fellow, Seoul National University, <span class="nb">2003-2005</span></li>
                       <li>More than 25 papers in Korean and international journals and conferences</li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>㈜마이다스아이티 연구위원, 2008-현재</li>
-                      <li>midas MeshFree·midas NFX·midas GTS NX 유한요소해석 solver 개발 총괄</li>
+                      <li><span class="nb">㈜마이다스아이티</span> 연구위원, <span class="nb">2008-현재</span></li>
+                      <li>midas <span class="nb">MeshFree·midas</span> <span class="nb">NFX·midas</span> GTS NX 유한요소해석 solver 개발 총괄</li>
                       <li>지식그래프 기반 Agentic 시스템 core engine 설계 및 context engineering</li>
-                      <li>미국 University of Dayton Research Institute 연구원, 2005-2008</li>
-                      <li>서울대학교 박사후연구원, 2003-2005</li>
-                      <li>국내외 학술지·학회에 25편 이상의 논문 발표</li>
+                      <li>미국 University of Dayton Research Institute 연구원, <span class="nb">2005-2008</span></li>
+                      <li>서울대학교 박사후연구원, <span class="nb">2003-2005</span></li>
+                      <li>국내외 <span class="nb">학술지·학회에</span> 25편 이상의 논문 발표</li>
                     </ul>
                   </section>
                   <section class="member-fact member-fact--wide">
@@ -1290,23 +1303,23 @@
                   <section class="member-fact member-fact--wide">
                     <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
                     <div class="member-tags" data-lang="en">
-                      <span class="member-tag">High-Performance Computing (HPC)</span>
+                      <span class="member-tag"><span class="nb">High-Performance</span> Computing (HPC)</span>
                       <span class="member-tag">Parallel &amp; distributed computing</span>
                       <span class="member-tag">Aerospace &amp; composite structural analysis</span>
-                      <span class="member-tag">Simulation-based design optimization</span>
+                      <span class="member-tag"><span class="nb">Simulation-based</span> design optimization</span>
                       <span class="member-tag">Generative AI &amp; agentic systems</span>
-                      <span class="member-tag">Graph-RAG &amp; knowledge graphs</span>
+                      <span class="member-tag"><span class="nb">Graph-RAG</span> &amp; knowledge graphs</span>
                       <span class="member-tag">Numerical analysis &amp; FEM</span>
                       <span class="member-tag">Engineering software architecture</span>
                     </div>
                     <div class="member-tags" data-lang="ko">
-                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
-                      <span class="member-tag">병렬·분산 컴퓨팅</span>
-                      <span class="member-tag">항공우주·복합재 구조해석</span>
+                      <span class="member-tag">고성능 <span class="nb">컴퓨팅(HPC)</span></span>
+                      <span class="member-tag"><span class="nb">병렬·분산</span> 컴퓨팅</span>
+                      <span class="member-tag"><span class="nb">항공우주·복합재</span> 구조해석</span>
                       <span class="member-tag">시뮬레이션 기반 최적설계</span>
                       <span class="member-tag">Generative AI &amp; Agentic System</span>
-                      <span class="member-tag">Graph-RAG 및 지식그래프</span>
-                      <span class="member-tag">수치해석 및 유한요소법(FEM)</span>
+                      <span class="member-tag"><span class="nb">Graph-RAG</span> 및 지식그래프</span>
+                      <span class="member-tag">수치해석 및 <span class="nb">유한요소법(FEM)</span></span>
                       <span class="member-tag">엔지니어링 소프트웨어 아키텍처</span>
                     </div>
                   </section>
@@ -1325,35 +1338,35 @@
                 </div>
                 <div class="member-title">
                   <span data-lang="en">Advisor · CAE Software R&amp;D, MIDAS IT</span>
-                  <span data-lang="ko">자문 · ㈜마이다스아이티 CAE 소프트웨어 연구개발</span>
+                  <span data-lang="ko">자문 · <span class="nb">㈜마이다스아이티</span> CAE 소프트웨어 연구개발</span>
                 </div>
-                <p class="member-bio" data-lang="en">A CAE software and finite element method specialist with more than 20 years of research and development experience. He played a leading role in the midasFEA and midas NFX platforms and has led R&amp;D organizations across structural analysis, CFD, optimization and fluid-structure interaction. He now works on Engineering AX and RAG-based engineering knowledge systems.</p>
-                <p class="member-bio" data-lang="ko">20년 이상 CAE 소프트웨어와 유한요소해석(FEM) 분야에서 연구개발을 수행한 기술 전문가입니다. midasFEA, midasNFX 등 핵심 CAE 플랫폼 개발을 주도했고 구조·유동·최적화·다물리 연성(FSI) 연구개발 조직을 이끌었습니다. 최근에는 엔지니어링 AX와 설계지침 기반 RAG 시스템으로 전문 영역을 넓히고 있습니다.</p>
+                <p class="member-bio" data-lang="en">A CAE software and finite element method specialist with more than 20 years of research and development experience. He played a leading role in the midasFEA and midas NFX platforms and has led R&amp;D organizations across structural analysis, CFD, optimization and <span class="nb">fluid-structure</span> interaction. He now works on Engineering AX and <span class="nb">RAG-based</span> engineering knowledge systems.</p>
+                <p class="member-bio" data-lang="ko">20년 이상 CAE 소프트웨어와 <span class="nb">유한요소해석(FEM)</span> 분야에서 연구개발을 수행한 기술 전문가입니다. midasFEA, midasNFX 등 핵심 CAE 플랫폼 개발을 주도했고 <span class="nb">구조·유동·최적화·다물리</span> <span class="nb">연성(FSI)</span> 연구개발 조직을 이끌었습니다. 최근에는 엔지니어링 AX와 설계지침 기반 RAG 시스템으로 전문 영역을 넓히고 있습니다.</p>
                 <div class="member-facts">
                   <section class="member-fact">
                     <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
                     <ul data-lang="en">
-                      <li>Ph.D., Aerospace Engineering, Seoul National University, 1998-2003 - finite element error estimation and adaptive mesh generation</li>
+                      <li>Ph.D., Aerospace Engineering, Seoul National University, <span class="nb">1998-2003</span> - finite element error estimation and adaptive mesh generation</li>
                       <li>B.S. and M.S., Aerospace Engineering, Seoul National University</li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>서울대학교 항공우주공학 박사, 1998-2003 - 유한요소법 오차추정 및 적응격자 연구</li>
-                      <li>서울대학교 항공우주공학 학사·석사</li>
+                      <li>서울대학교 항공우주공학 박사, <span class="nb">1998-2003</span> - 유한요소법 오차추정 및 적응격자 연구</li>
+                      <li>서울대학교 항공우주공학 <span class="nb">학사·석사</span></li>
                     </ul>
                   </section>
                   <section class="member-fact">
                     <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                     <ul data-lang="en">
-                      <li>MIDAS IT, 2023-present - advanced simulation (FSI) and Engineering AX development</li>
-                      <li>MIDAS IN, 2020-2022 - data analytics and AI-based talent matching platform</li>
-                      <li>MIDAS IT, 2006-2019 - product development leadership and R&amp;D management for structural, CFD and optimization technologies</li>
-                      <li>Development of midas NFX, Nastran-FX and midas Building</li>
+                      <li>MIDAS IT, <span class="nb">2023-present</span> - advanced simulation (FSI) and Engineering AX development</li>
+                      <li>MIDAS IN, <span class="nb">2020-2022</span> - data analytics and <span class="nb">AI-based</span> talent matching platform</li>
+                      <li>MIDAS IT, <span class="nb">2006-2019</span> - product development leadership and R&amp;D management for structural, CFD and optimization technologies</li>
+                      <li>Development of midas NFX, <span class="nb">Nastran-FX</span> and midas Building</li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>㈜마이다스아이티, 2023-현재 - 특수해석(FSI) 및 엔지니어링 AX 개발</li>
-                      <li>㈜마이다스인, 2020-2022 - 데이터 분석 및 채용매칭 시스템 개발</li>
-                      <li>㈜마이다스아이티, 2006-2019 - 제품개발 총괄, 구조·유동·최적화 연구개발 총괄</li>
-                      <li>midasNFX, Nastran-FX 및 midas Building 개발</li>
+                      <li><span class="nb">㈜마이다스아이티</span>, <span class="nb">2023-현재</span> - <span class="nb">특수해석(FSI)</span> 및 엔지니어링 AX 개발</li>
+                      <li><span class="nb">㈜마이다스인</span>, <span class="nb">2020-2022</span> - 데이터 분석 및 채용매칭 시스템 개발</li>
+                      <li><span class="nb">㈜마이다스아이티</span>, <span class="nb">2006-2019</span> - 제품개발 총괄, <span class="nb">구조·유동·최적화</span> 연구개발 총괄</li>
+                      <li>midasNFX, <span class="nb">Nastran-FX</span> 및 midas Building 개발</li>
                     </ul>
                   </section>
                   <section class="member-fact member-fact--wide">
@@ -1363,21 +1376,21 @@
                       <span class="member-tag">Numerical algorithms</span>
                       <span class="member-tag">CAE software architecture</span>
                       <span class="member-tag">Structural analysis, CFD &amp; optimization</span>
-                      <span class="member-tag">Fluid-structure interaction (FSI)</span>
+                      <span class="member-tag"><span class="nb">Fluid-structure</span> interaction (FSI)</span>
                       <span class="member-tag">High Performance Computing (HPC)</span>
                       <span class="member-tag">Parallel computing &amp; GPU acceleration</span>
-                      <span class="member-tag">Engineering AI/AX</span>
-                      <span class="member-tag">RAG-based knowledge systems</span>
+                      <span class="member-tag">Engineering <span class="nb">AI/AX</span></span>
+                      <span class="member-tag"><span class="nb">RAG-based</span> knowledge systems</span>
                     </div>
                     <div class="member-tags" data-lang="ko">
-                      <span class="member-tag">유한요소해석(FEM)</span>
+                      <span class="member-tag"><span class="nb">유한요소해석(FEM)</span></span>
                       <span class="member-tag">수치해석 알고리즘</span>
                       <span class="member-tag">CAE 소프트웨어 아키텍처</span>
-                      <span class="member-tag">구조·유동해석 및 최적설계</span>
-                      <span class="member-tag">다물리 연성(FSI)</span>
-                      <span class="member-tag">고성능 컴퓨팅(HPC)</span>
+                      <span class="member-tag"><span class="nb">구조·유동해석</span> 및 최적설계</span>
+                      <span class="member-tag">다물리 <span class="nb">연성(FSI)</span></span>
+                      <span class="member-tag">고성능 <span class="nb">컴퓨팅(HPC)</span></span>
                       <span class="member-tag">병렬해석 및 GPU 가속화</span>
-                      <span class="member-tag">공학용 AI/AX</span>
+                      <span class="member-tag">공학용 <span class="nb">AI/AX</span></span>
                       <span class="member-tag">RAG 기반 엔지니어링 지식시스템</span>
                     </div>
                   </section>
@@ -1398,8 +1411,8 @@
                   <span data-lang="en">Advisor · Professor, Aerospace Engineering, Inha University</span>
                   <span data-lang="ko">자문 · 인하대학교 항공우주공학과 교수</span>
                 </div>
-                <p class="member-bio" data-lang="en">An aerospace structures researcher who leads the Laboratory for Aerospace Structures and Computational Engineering Technology (ASCENT) at Inha University. His work spans finite element program development, fluid-structure interaction, the structural integrity of hypersonic vehicles, and machine learning applied to structural analysis.</p>
-                <p class="member-bio" data-lang="ko">인하대학교 항공우주구조연구실(ASCENT)을 이끄는 항공우주 구조 연구자입니다. 유한요소 프로그램 개발, 유체-구조 연성 해석, 극초음속 비행체의 구조 건전성, 그리고 구조해석에 적용하는 기계학습을 연구합니다.</p>
+                <p class="member-bio" data-lang="en">An aerospace structures researcher who leads the Laboratory for Aerospace Structures and Computational Engineering Technology (ASCENT) at Inha University. His work spans finite element program development, <span class="nb">fluid-structure</span> interaction, the structural integrity of hypersonic vehicles, and machine learning applied to structural analysis.</p>
+                <p class="member-bio" data-lang="ko">인하대학교 <span class="nb">항공우주구조연구실(ASCENT)</span>을 이끄는 항공우주 구조 연구자입니다. 유한요소 프로그램 개발, <span class="nb">유체-구조</span> 연성 해석, 극초음속 비행체의 구조 건전성, 그리고 구조해석에 적용하는 기계학습을 연구합니다.</p>
                 <div class="member-facts">
                   <section class="member-fact">
                     <h3><span data-lang="en">Education</span><span data-lang="ko">학력</span></h3>
@@ -1417,16 +1430,16 @@
                   <section class="member-fact">
                     <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                     <ul data-lang="en">
-                      <li>Professor, Aerospace Engineering, Inha University, 2000-present</li>
+                      <li>Professor, Aerospace Engineering, Inha University, <span class="nb">2000-present</span></li>
                       <li>Visiting Scholar, Georgia Institute of Technology, 2008</li>
                       <li>Researcher, Seoul National University, 2000</li>
-                      <li>Post-doctoral Researcher, UCLA Center for Aerospace Research and Education, 1998-2000</li>
+                      <li><span class="nb">Post-doctoral</span> Researcher, UCLA Center for Aerospace Research and Education, <span class="nb">1998-2000</span></li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>인하대학교 항공우주공학과 교수, 2000-현재</li>
+                      <li>인하대학교 항공우주공학과 교수, <span class="nb">2000-현재</span></li>
                       <li>미국 조지아공과대학교 방문학자, 2008</li>
                       <li>서울대학교 연구원, 2000</li>
-                      <li>미국 UCLA 항공우주 연구교육센터 박사후연구원, 1998-2000</li>
+                      <li>미국 UCLA 항공우주 연구교육센터 박사후연구원, <span class="nb">1998-2000</span></li>
                     </ul>
                   </section>
                   <section class="member-fact member-fact--wide">
@@ -1434,7 +1447,7 @@
                     <div class="member-tags" data-lang="en">
                       <span class="member-tag">Aerospace structural analysis</span>
                       <span class="member-tag">Finite element program development</span>
-                      <span class="member-tag">Fluid-structure interaction (FSI)</span>
+                      <span class="member-tag"><span class="nb">Fluid-structure</span> interaction (FSI)</span>
                       <span class="member-tag">Hypersonic vehicle structures</span>
                       <span class="member-tag">Structural optimization</span>
                       <span class="member-tag">Machine learning for structural analysis</span>
@@ -1444,7 +1457,7 @@
                     <div class="member-tags" data-lang="ko">
                       <span class="member-tag">항공우주 구조해석</span>
                       <span class="member-tag">유한요소 프로그램 개발</span>
-                      <span class="member-tag">유체-구조 연성(FSI)</span>
+                      <span class="member-tag"><span class="nb">유체-구조</span> <span class="nb">연성(FSI)</span></span>
                       <span class="member-tag">극초음속 비행체 구조</span>
                       <span class="member-tag">구조 최적설계</span>
                       <span class="member-tag">구조해석용 기계학습</span>
@@ -1469,7 +1482,7 @@
                   <span data-lang="en">Advisor · Professor, Aerospace Engineering, Inha University</span>
                   <span data-lang="ko">자문 · 인하대학교 항공우주공학과 교수</span>
                 </div>
-                <p class="member-bio" data-lang="en">A computational mechanics researcher who spent nearly a decade at the KISTI Supercomputing Center before joining Inha University. His work covers parallel computing for large-scale analysis, thermal simulation of metal additive manufacturing, satellite thermal model correlation, and AI-based structural fault diagnosis.</p>
+                <p class="member-bio" data-lang="en">A computational mechanics researcher who spent nearly a decade at the KISTI Supercomputing Center before joining Inha University. His work covers parallel computing for <span class="nb">large-scale</span> analysis, thermal simulation of metal additive manufacturing, satellite thermal model correlation, and <span class="nb">AI-based</span> structural fault diagnosis.</p>
                 <p class="member-bio" data-lang="ko">KISTI 슈퍼컴퓨팅센터에서 약 10년간 근무한 뒤 인하대학교로 옮긴 계산역학 연구자입니다. 대규모 해석을 위한 병렬 컴퓨팅, 금속 적층제조 공정의 열해석, 위성 열해석 모델 보정, AI 기반 구조 결함 진단을 연구합니다.</p>
                 <div class="member-facts">
                   <section class="member-fact">
@@ -1488,15 +1501,15 @@
                   <section class="member-fact">
                     <h3><span data-lang="en">Career</span><span data-lang="ko">주요 경력</span></h3>
                     <ul data-lang="en">
-                      <li>Professor, Aerospace Engineering, Inha University, 2012-present</li>
-                      <li>Researcher, MIDAS IT, 2008-2012</li>
-                      <li>Researcher, KISTI Supercomputing Center, 1999-2008</li>
+                      <li>Professor, Aerospace Engineering, Inha University, <span class="nb">2012-present</span></li>
+                      <li>Researcher, MIDAS IT, <span class="nb">2008-2012</span></li>
+                      <li>Researcher, KISTI Supercomputing Center, <span class="nb">1999-2008</span></li>
                       <li>Visiting Researcher, IBM T.J. Watson Research Center, 2002 and 2007</li>
                     </ul>
                     <ul data-lang="ko">
-                      <li>인하대학교 항공우주공학과 교수, 2012-현재</li>
-                      <li>㈜마이다스아이티 연구원, 2008-2012</li>
-                      <li>KISTI 슈퍼컴퓨팅센터 연구원, 1999-2008</li>
+                      <li>인하대학교 항공우주공학과 교수, <span class="nb">2012-현재</span></li>
+                      <li><span class="nb">㈜마이다스아이티</span> 연구원, <span class="nb">2008-2012</span></li>
+                      <li>KISTI 슈퍼컴퓨팅센터 연구원, <span class="nb">1999-2008</span></li>
                       <li>미국 IBM T.J. Watson 연구소 방문연구원, 2002, 2007</li>
                     </ul>
                   </section>
@@ -1504,17 +1517,17 @@
                     <h3><span data-lang="en">Expertise</span><span data-lang="ko">전문 분야</span></h3>
                     <div class="member-tags" data-lang="en">
                       <span class="member-tag">Computational mechanics</span>
-                      <span class="member-tag">High-performance &amp; parallel computing</span>
+                      <span class="member-tag"><span class="nb">High-performance</span> &amp; parallel computing</span>
                       <span class="member-tag">Metal additive manufacturing simulation</span>
                       <span class="member-tag">Thermal analysis</span>
                       <span class="member-tag">Satellite thermal model correlation</span>
                       <span class="member-tag">Structural optimization</span>
-                      <span class="member-tag">AI-based fault diagnosis</span>
-                      <span class="member-tag">Variable-node finite elements</span>
+                      <span class="member-tag"><span class="nb">AI-based</span> fault diagnosis</span>
+                      <span class="member-tag"><span class="nb">Variable-node</span> finite elements</span>
                     </div>
                     <div class="member-tags" data-lang="ko">
                       <span class="member-tag">계산역학</span>
-                      <span class="member-tag">고성능·병렬 컴퓨팅</span>
+                      <span class="member-tag"><span class="nb">고성능·병렬</span> 컴퓨팅</span>
                       <span class="member-tag">금속 적층제조 공정 해석</span>
                       <span class="member-tag">열해석</span>
                       <span class="member-tag">위성 열해석 모델 보정</span>
@@ -1561,7 +1574,7 @@
       </span>
       <div class="footer-contact">
         <address>
-          <span data-lang="en">Company: SpaceD<br>6F, Yeosam Building, 123 Teheran-ro, Gangnam-gu, Seoul</span>
+          <span data-lang="en">Company: SpaceD<br>6F, Yeosam Building, 123 <span class="nb">Teheran-ro</span>, <span class="nb">Gangnam-gu</span>, Seoul</span>
           <span data-lang="ko">회사명: SpaceD<br>서울 강남구 테헤란로 123 여삼빌딩 6층</span>
         </address>
         <a class="footer-yt" href="https://www.youtube.com/channel/UCDpyFADpNgInzxWFf0CTdUg" target="_blank" rel="noopener" aria-label="SpaceD YouTube">
