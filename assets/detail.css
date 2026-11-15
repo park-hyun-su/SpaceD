@@ -39,6 +39,9 @@ html[lang="ko"] .lang-toggle .ko,html[lang="en"] .lang-toggle .en{opacity:1;colo
 /* logo image */
 .brand{display:inline-flex;align-items:center;padding:0}.brand:after{content:none}.brand-logo{height:34px;width:auto}footer .brand{border:0}footer .brand-logo{height:28px}@media(max-width:760px){.brand-logo{height:30px}footer .brand-logo{height:26px}}
 
+/* header stays on top while scrolling, smaller */
+header{position:fixed;transition:height .3s,background-color .3s,border-color .3s}.brand-logo{transition:height .3s}header.scrolled{height:64px;background:rgba(8,11,14,.95);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}header.scrolled .brand-logo{height:26px}header.scrolled .nav-contact{padding:10px 16px}header.scrolled .lang-toggle{padding:9px 10px}.nav{transition:none}@media(max-width:760px){.nav{top:100%!important}header.scrolled{height:58px}header.scrolled .brand-logo{height:24px}header.scrolled .menu-button{padding:7px 12px}}@media(prefers-reduced-motion:reduce){header,.brand-logo{transition:none}}
+
 /* sub navigation between detail pages */
 .subnav{position:absolute;top:90px;left:0;right:0;z-index:19;display:flex;gap:30px;height:52px;align-items:center;border-bottom:1px solid var(--line);font-size:12px;color:#aab5bd;overflow-x:auto;scrollbar-width:none}
 .subnav::-webkit-scrollbar{display:none}

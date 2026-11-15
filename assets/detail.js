@@ -18,3 +18,5 @@ function setMenu(open) {
 menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
 nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+const siteHeader=document.querySelector('header');const markScrolled=()=>siteHeader&&siteHeader.classList.toggle('scrolled',window.scrollY>40);window.addEventListener('scroll',markScrolled,{passive:true});markScrolled();
