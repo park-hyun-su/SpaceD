@@ -42,4 +42,4 @@ The site is deployed with GitHub Pages and the custom domain `www.spacedpt.com`.
 
 ## Contact
 
-`syntax.kmu@gmail.com`
+`waterhyun@spacedpt.com`
