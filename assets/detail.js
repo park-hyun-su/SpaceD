@@ -1,10 +1,10 @@
 const root = document.documentElement;
 let savedLanguage = 'en';
-try { savedLanguage = localStorage.getItem('spaced-language') || 'en'; } catch (e) {}
+try { savedLanguage = localStorage.getItem('spaced-lang') || 'en'; } catch (e) {}
 root.lang = savedLanguage === 'ko' ? 'ko' : 'en';
 document.querySelector('.lang-toggle')?.addEventListener('click', () => {
   root.lang = root.lang === 'en' ? 'ko' : 'en';
-  try { localStorage.setItem('spaced-language', root.lang); } catch (e) {}
+  try { localStorage.setItem('spaced-lang', root.lang); } catch (e) {}
   if (menu) setMenu(menu.getAttribute('aria-expanded') === 'true');
 });
 
