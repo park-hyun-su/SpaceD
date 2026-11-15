@@ -1,8 +1,20 @@
-const languageToggle = document.querySelector('.lang-toggle');
-const savedLanguage = localStorage.getItem('spaced-language') || 'en';
-document.documentElement.lang = savedLanguage;
-languageToggle?.addEventListener('click', () => {
-  const root = document.documentElement;
+const root = document.documentElement;
+let savedLanguage = 'ko';
+try { savedLanguage = localStorage.getItem('spaced-language') || 'ko'; } catch (e) {}
+root.lang = savedLanguage === 'en' ? 'en' : 'ko';
+document.querySelector('.lang-toggle')?.addEventListener('click', () => {
   root.lang = root.lang === 'en' ? 'ko' : 'en';
-  localStorage.setItem('spaced-language', root.lang);
+  try { localStorage.setItem('spaced-language', root.lang); } catch (e) {}
 });
+
+const menu = document.querySelector('.menu-button');
+const nav = document.querySelector('.nav');
+function setMenu(open) {
+  if (!menu || !nav) return;
+  menu.setAttribute('aria-expanded', String(open));
+  nav.classList.toggle('open', open);
+  menu.textContent = open ? '닫기 ×' : '메뉴 ☰';
+}
+menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
