@@ -169,3 +169,6 @@ header{height:76px}.brand{font-size:28px}
 footer{display:block;padding-top:30px;padding-bottom:30px}footer>div{margin-bottom:22px}footer .foot-right{text-align:left;margin:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* translation spans follow their parent */
+body span[data-lang]:not([lang]):not(.x){font:inherit;color:inherit;letter-spacing:inherit;margin:0;text-transform:inherit}

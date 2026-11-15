@@ -5,6 +5,7 @@ root.lang = savedLanguage === 'en' ? 'en' : 'ko';
 document.querySelector('.lang-toggle')?.addEventListener('click', () => {
   root.lang = root.lang === 'en' ? 'ko' : 'en';
   try { localStorage.setItem('spaced-language', root.lang); } catch (e) {}
+  if (menu) setMenu(menu.getAttribute('aria-expanded') === 'true');
 });
 
 const menu = document.querySelector('.menu-button');
@@ -13,7 +14,7 @@ function setMenu(open) {
   if (!menu || !nav) return;
   menu.setAttribute('aria-expanded', String(open));
   nav.classList.toggle('open', open);
-  menu.textContent = open ? '닫기 ×' : '메뉴 ☰';
+  menu.textContent = open ? (document.documentElement.lang==='en'?'Close ×':'닫기 ×') : (document.documentElement.lang==='en'?'Menu ☰':'메뉴 ☰');
 }
 menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
 nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
