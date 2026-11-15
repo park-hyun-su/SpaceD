@@ -181,3 +181,8 @@ body span[data-lang]:not([lang]):not(.x){font:inherit;color:inherit;letter-spaci
 
 /* Pretendard */
 body,button,input,select,textarea{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Noto Sans KR","Malgun Gothic",sans-serif}h1,h2,h3,h4,h5,.hero h1,.hero h2,.contact h2,.cta-band h2,.capability h3,.product-panel h3,.specs dd,.strip b,.card strong,.core,.partner-card-copy h3 span,.person h3 span,.advisor h4 span,.explore-name{font-family:inherit}.hero h1{letter-spacing:-.045em}.contact h2,.cta-band h2{letter-spacing:-.045em}
+
+/* mobile-fit */
+@media(max-width:760px){main>section:not(.hero),body>section:not(.hero){min-height:calc(100svh - 58px);display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}main>section:not(.hero)>*,body>section:not(.hero)>*{width:100%}body p,body li,body dd,body summary,.explore-desc,.lede{font-size:16px!important;line-height:1.65!important}body p.person-role,body p.advisor-title{font-size:15px!important}.button,.text-link,.log-more,.tab,.lang-toggle span{font-size:15px!important}dt,small,time,.mono,.status,.mou,.log-tag,.log-src,.render-caption,.spec-note,.internal-note,.down span{font-size:13px!important}dd small{font-size:14px!important}.hero-caption,.hero-caption span{font-size:11px!important;line-height:1.5!important}footer,footer p,footer a,footer div,footer span{font-size:14px!important;line-height:1.7!important}}
+/* mobile-fit-2 */
+@media(max-width:760px){.subnav a{font-size:14px!important}.tag,.tag span{font-size:12px!important}.capabilities{grid-template-columns:1fr!important;gap:22px!important}}
